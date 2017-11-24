@@ -80,18 +80,6 @@ Los objetos, de la forma en la que los vamos a ver en esta sesión se utilizan p
 - Un post de Facebook es un objeto en el que contiene título, imagen, likes, etc...
 
 
-## Recursos externos
-
-### Ada Lovelace en Youtube
-
-En este curso veremos tanto una introducción breve a los objetos como la sintaxis básica para trabajar con ellos. La idea es aprender métodos, propiedades y entender qué es un objeto en sí y por qué son tan útiles.
-
-- [Introducción a los objetos en Javascript](https://www.youtube.com/watch?v=ycfoaxNhYbk&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o&index=27)
-- [Definición de objetos](https://www.youtube.com/watch?v=xDqTEsiNgBw&index=28&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o)
-- [Propiedades](https://www.youtube.com/watch?v=jj9em_PDBH8&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o&index=30)
-- [Métodos](https://www.youtube.com/watch?v=BZE85nUjLHA&index=31&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o)
-
-
 ## Resumen de la sesión
 
 - Los objetos son abstracciones inspiradas en el mundo real que permiten estructurar objetos ficticios en JavaScript de forma simple usando grupos de pares de clave/valor y creando propiedades, que representarán las características y métodos, que representarán las acciones que podrán llevar a cabo esos objetos
@@ -128,6 +116,18 @@ En este curso veremos tanto una introducción breve a los objetos como la sintax
 ```
 
 
+## Recursos externos
+
+### Ada Lovelace en Youtube
+
+En este curso veremos tanto una introducción breve a los objetos como la sintaxis básica para trabajar con ellos. La idea es aprender métodos, propiedades y entender qué es un objeto en sí y por qué son tan útiles.
+
+- [Introducción a los objetos en Javascript](https://www.youtube.com/watch?v=ycfoaxNhYbk&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o&index=27)
+- [Definición de objetos](https://www.youtube.com/watch?v=xDqTEsiNgBw&index=28&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o)
+- [Propiedades](https://www.youtube.com/watch?v=jj9em_PDBH8&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o&index=30)
+- [Métodos](https://www.youtube.com/watch?v=BZE85nUjLHA&index=31&list=PLI7nHlOIIPOJtTDs1HVJABswW-xJcA7_o)
+
+
 ## Ejercicios
 
 ### Crear un contador
@@ -140,7 +140,7 @@ Con la ayuda de `alert` Probaremos a usar varios métodos distintos y comprobar 
 
 ### Estructura de datos para un usuario
 
-Vamos a crear un objeto para almacenar la información de un usuario y una variable que llamada `job` donde guardaremos el valor `developer`. A continuación seguiremos los siguiente pasos
+Vamos a crear un objeto para almacenar la información de un usuario y una variable llamada `job` donde guardaremos el valor `developer`. A continuación seguiremos los siguiente pasos
 
   Usando la notación con punto o la notación con corchetes (`[]`) (ej: `obj.prop` o `obj["prop"]`):
     1. Añadiremos una propiedad llamada `firstname` y le asignaremos un valor.
