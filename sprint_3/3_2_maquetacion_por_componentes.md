@@ -10,7 +10,7 @@
   - [Tipografías](#tipografías)
   - [Componentes](#componentes)
   - [Clases de ayuda](#clases-de-ayuda)
-- [¿Qué hacer cuando no tenemos un sistema?](#¿qué-hacer-cuando-no-tenemos-un-sistema)
+- [Ejemplos de sistemas de diseño](#ejemplos-de-sistemas-de-diseño)
 
 ## Introducción
 
