@@ -435,7 +435,28 @@ Para finalizar y para que sirva de inspiración hemos recogido algunos de los si
 
 * * *
 
-(BONUS) EJERCICIO 3: UN SISTEMA COMPLETO
+EJERCICIO 3: Nuestro componente input
+
+En este ejercicio vamos a crear los estilos para un componente input. Este componente, como se puede ver en la imagen tendrá distintos estados (activo, hover, etc.) y distintos formatos (con icono a la derecha y con icono a la izquierda)
+
+A continuación generaremos un HTML en el que probaremos que funciona cada uno de los estados y cada una de las variantes. La idea es que usando un HTML como el siguiente los estilos se apliquen correctamente:
+
+```html
+<div class="input-w-icon">
+  <img src="images/user.png" alt="Usuario">
+  <input type="text" name="username">
+</div>
+
+<input class="input" type="text" name="lastname" >
+<input class="input" type="number" name="creditcard" disabled>
+```
+
+
+>NOTA: No es necesario que los estilos sean idénticos a los que aparecen en la foto, pero si deben de estar definidos los estilos para cada uno de los estados y para cada una de las variaciones
+
+* * *
+
+(BONUS) EJERCICIO 4: UN SISTEMA COMPLETO
 
 A partir de la siguiente imagen. Crea el HTML y los archivos de Sass necesario para replicar los estilos y generar un sistema a partir de lo visto. Utiliza variables para los tamaños de fuente, los colores, los radios de los botones, etc. por si se decide cambiar en el futuro. No importa si no es exacto el color o el radio del borde.
 
