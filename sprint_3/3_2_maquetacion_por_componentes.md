@@ -348,6 +348,113 @@ Además, asignaremos a `body` los estilos que consideremos necesarios pero usand
 
 * * *
 
+### Componentes
+
+En este apartado veremos en clase como trabajar con componentes. Dejamos por aquí un código de ejemplo.
+
+```scss
+$color-dark: #161616;
+$color-ocean: #416dea;
+$color-grass: #3dd28d;
+$color-snow: #FFFFFF;
+$color-salmon: #F32C52;
+$color-sun: #feee7d;
+$color-alge: #7999a9;
+$color-flower: #353866;
+$color-smoke: #e4e4e4;
+$font-face: sans-serif;
+
+.button {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 12px;
+  cursor: pointer;
+  text-align: center;
+  text-transform: capitalize;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &:hover {
+    -webkit-transition: all 150ms linear;
+    transition: all 150ms linear;
+    opacity: .85;
+  }
+  &:active {
+    -webkit-transition: all 150ms linear;
+    transition: all 150ms linear;
+    opacity: .75;
+  }
+  &:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+  }
+}
+
+.btn-default {
+  color: #202129;
+  background-color: #f2f2f2;
+
+  &:hover {
+    color: #202129;
+    background-color: #e1e2e2;
+    opacity: 1;
+  }
+  &:active {
+    background-color: #d5d6d6;
+    opacity: 1;
+  }
+}
+
+.btn-success {
+  color: $color-snow;
+  background: $color-grass;
+}
+
+.btn-error {
+  color: $color-snow;
+  background: $color-salmon;
+}
+
+.btn-warning {
+  color: black;
+  background: $color-sun;
+}
+
+
+```
+
+* * *
+
+EJERCICIO 3: Nuestro componente input
+
+En este ejercicio vamos a crear los estilos para un componente input. Este componente, como se puede ver en la imagen tendrá distintos estados (activo, hover, etc.) y distintos formatos (con icono a la derecha y con icono a la izquierda)
+
+![Inputs](assets/images/3-2/inputs.png)
+
+A continuación generaremos un HTML en el que probaremos que funciona cada uno de los estados y cada una de las variantes. La idea es que usando un HTML como el siguiente los estilos se apliquen correctamente:
+
+```html
+<div class="input-w-icon">
+  <img src="images/user.png" alt="Usuario">
+  <input type="text" name="username">
+</div>
+
+<input class="input" type="text" name="lastname" >
+<input class="input" type="number" name="creditcard" disabled>
+```
+
+
+>NOTA: No es necesario que los estilos sean idénticos a los que aparecen en la foto, pero si deben de estar definidos los estilos para cada uno de los estados y para cada una de las variaciones
+
+* * *
+
 ### Clases de ayuda
 
 A la hora de generar el CSS para crear un sistema es muy común crear clases que sirvan de ayuda para aplicar estilos en determinados casos. Estas clases suelen ir definidas en un archivo llamado `_helpers.scss` o `_utilities.scss` y suele ser el último archivo que se importa desde nuestro `main.scss` para que así las clases que definamos en éste archivo prevalezcan frente al resto por la regla de la cascada de CSS.
@@ -425,28 +532,6 @@ Para finalizar y para que sirva de inspiración hemos recogido algunos de los si
 - [Purple de Heroku](https://purple.herokuapp.com/)
 - [Sistema de Mailchimp](http://ux.mailchimp.com/patterns)
 - [Nachos: Sistema de diseño de Trello](https://design.trello.com/)
-
-
-* * *
-
-EJERCICIO 3: Nuestro componente input
-
-En este ejercicio vamos a crear los estilos para un componente input. Este componente, como se puede ver en la imagen tendrá distintos estados (activo, hover, etc.) y distintos formatos (con icono a la derecha y con icono a la izquierda)
-
-A continuación generaremos un HTML en el que probaremos que funciona cada uno de los estados y cada una de las variantes. La idea es que usando un HTML como el siguiente los estilos se apliquen correctamente:
-
-```html
-<div class="input-w-icon">
-  <img src="images/user.png" alt="Usuario">
-  <input type="text" name="username">
-</div>
-
-<input class="input" type="text" name="lastname" >
-<input class="input" type="number" name="creditcard" disabled>
-```
-
-
->NOTA: No es necesario que los estilos sean idénticos a los que aparecen en la foto, pero si deben de estar definidos los estilos para cada uno de los estados y para cada una de las variaciones
 
 * * *
 
