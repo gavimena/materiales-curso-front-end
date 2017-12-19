@@ -8,7 +8,6 @@
 - [Convertir un sistema a código](#convertir-un-sistema-a-código)
   - [Colores](#colores)
   - [Tipografías](#tipografías)
-  - [Componentes](#componentes)
   - [Clases de ayuda](#clases-de-ayuda)
 - [Ejemplos de sistemas de diseño](#ejemplos-de-sistemas-de-diseño)
 
@@ -21,15 +20,15 @@ En esta sesión aprenderemos qué es un sistema de diseño, cómo convertir ese 
 
 Un sistema de diseño es un conjunto de patrones y reglas que rigen el estilo de un producto de forma consistente y armoniosa.
 
-En el caso de un sistema de diseño web, este definirá los estilos para los componentes, por ejemplo como deben ser los estilos de los botones o los inputs así como los iconos.
+En el caso de un sistema de diseño web, éste definirá los estilos para los componentes, por ejemplo como deben ser los estilos de los botones o los inputs así como los iconos.
 
 A la hora de dar coherencia, el sistema deberá mantener sus estilos a lo largo de todos sus componentes de tal forma que la linea gráfica se mantenga a través de todos ellos. Por ejemplo, esto se suele ver claramente cuando tenemos una visión global de todos los componentes. En el momento que tenemos esa visión global, si el sistema es bueno, veremos una relación clara entre todos ellos y una coherencia en sus estilos.
 
-Por último un sistema no solo son estilos para nuestros componentes, sino que también define las reglas sobre cómo debe usarse, como los colores y cuando usarlos, la tipografía y cuando usar un tamaño u otro y los márgenes y paddings que se pueden aplicar.
+Por último un sistema no sólo son estilos para nuestros componentes, sino que también define las reglas sobre cómo debe usarse, como los colores y cuándo usarlos, la tipografía y cuándo usar un tamaño u otro y los márgenes y paddings que se pueden aplicar.
 
 La idea principal del sistema es que cualquiera que lo analice sepa con claridad cuales son sus reglas y cómo aplicarlas. De esta forma cualquier persona puede empezar a trabajar con él en muy poco tiempo, generar vistas que no parezcan sacadas de un estilo completamente distinto y todo esto de forma rápida y sencilla.
 
-Y ahora pensarás «vale si muy bien, pero sigues hablándome en chino, ¿podrías ponerme un ejemplo?». Sin duda, el ejemplo más claro y que todos hemos vivido y conocemos de primera mano es [Material Design](https://material.io/guidelines/material-design/introduction.html) de Google, que es el sistema que se utiliza para diseñar la mayoría de aplicaciones de Google y que muchas otras empresas han utilizado para diseñar las suyas propias.
+Y ahora pensarás «vale sí muy bien, pero sigues hablándome en chino, ¿podrías ponerme un ejemplo?». Sin duda, el ejemplo más claro y que todos hemos vivido y conocemos de primera mano es [Material Design](https://material.io/guidelines/material-design/introduction.html) de Google, que es el sistema que se utiliza para diseñar la mayoría de aplicaciones de Google y que muchas otras empresas han utilizado para diseñar las suyas propias.
 
 Este sistema establece un [conjunto de reglas y principios](https://material.io/guidelines/), [estilos](https://material.io/guidelines/style) y [componentes](https://material.io/guidelines/components/#).
 
@@ -40,7 +39,7 @@ Durante esta sesión veremos cómo nos afecta esto de los sistemas a la hora de 
 
 Los sistemas de diseño hoy en día se utilizan tanto en sitios web simples con un par de páginas como en aplicaciones con más de 100 vistas diferentes. La diferencia entre un caso y otro es que en el primero definiremos una serie de reglas que serán bastante simples y tendremos pocos componentes y en el segundo habrá más de ambos.
 
-Los sistemas también se utilizan si queremos dar consistencia a nuestra web, partir de una base sencilla y concisa de reglas para hacer crecer una web de forma rápida o queremos que a la hora de desarrollar la página estén claros los estilos y las reglas para no fallar en la implementación, que diseño y web sean similares.
+Los sistemas también se utilizan si queremos dar consistencia a nuestra web, partir de una base sencilla y concisa de reglas para hacer crecer una web de forma rápida. O si queremos que a la hora de desarrollar la página estén claros los estilos y las reglas para no fallar en la implementación, es decir, que diseño y web sean similares.
 
 Por último, si estamos diseñando una web muy sencilla en la que queremos darle un toque artístico o romper con la consistencia, se podrá prescindir de definir un sistema complejo pero siempre estarán ahí ciertas reglas que definan el estilo de nuestra web y los componentes que la conforman. Un ejemplo sería la nueva tendencia [brutalista](http://brutalistwebsites.com/) que hay en la web, cuya raíz es romper con la monotonía actual que se vive en las páginas web actuales en las que la mayoría tienen muchas similitudes entre sí.
 
@@ -74,7 +73,7 @@ scss
      `- _home.scss
 ```
 
-Lo normal a la hora de pasar un sistema a código es empezar por los estilos generales. Estos estilos generales son entre otros los colores, la tipografía, la iconografía y el estilo que tendrán las imágenes. A la hora de programar,la iconografía y los estilos de las imágenes será algo que nos venga dado y en pocos casos tendremos que crear un estilos para ellas ya que nos pasarán imágenes para que las metamos directamente. Pero en desarrollo si que podemos generar estilos para tipografía y colores.
+Lo normal a la hora de pasar un sistema a código es empezar por los estilos generales. Estos estilos generales son entre otros los colores, la tipografía, la iconografía y el estilo que tendrán las imágenes. A la hora de programar, la iconografía y los estilos de las imágenes será algo que nos venga dado y en pocos casos tendremos que crear un estilos para ellas ya que nos pasarán imágenes para que las metamos directamente. Pero en desarrollo sí que podemos generar estilos para tipografía y colores.
 
 ### Colores
 
@@ -84,9 +83,9 @@ En esta caso, empezaremos por los colores de nuestra página. Imaginemos que ten
 
 Para definir estos colores, lo que haremos será crear variables en `Sass` para cada uno de ellos, para esto hay dos formas distintas de crear las variables, usando un map (que sería similar a un objeto de JavaScript) o usando multiples variables:
 
-```sass
+```scss
 /*
-  Truco: En inglés sería primary color pero ponemos el color delante para que a
+  Truco: En inglés sería 'primary color' pero ponemos la palabra 'color' delante para que a
   la hora autocompletar con Atom, escribamos $color y nos aparezcan las sugerencias
   para todos los colores existentes
 */
@@ -110,8 +109,8 @@ Para los colores de soporte. Lo normal es que haya cuatro:
 
   - Error (error): Suele ser rojo
   - Éxito (success): Suele ser verde
-  - Precaución (Warning): Suele ser amarillo
-  - Informativo (info): Varia en color
+  - Precaución (warning): Suele ser amarillo
+  - Informativo (info): Varía en color
 */
 
 $color-error: #e71d32;
@@ -125,9 +124,9 @@ Esa sería la opción de usar variables para definir los colores. Estas variable
 ![Botón de Carbon](assets/images/3-2/button.png)
 ![Link de Carbon](assets/images/3-2/link.png)
 
-Utilizariamos los siguientes estilos:
+Utilizaríamos los siguientes estilos:
 
-```sass
+```scss
 .link {
   color: $color-primary;
 }
@@ -149,11 +148,11 @@ Que generarían este código CSS:
 }
 ```
 
-Lo bueno de esta técnica es que si en el futuro nos dá por cambiar el color que estamos usando por otro, solo tendremos que cambiarlo en `$color-primary` y automaticamente cambiará en todos los sitios que lo utilicemos y nos sentiremos en la gloria.
+Lo bueno de esta técnica es que si en el futuro nos da por cambiar el color que estamos usando por otro, sólo tendremos que cambiarlo en `$color-primary` y automáticamente cambiará en todos los sitios que lo utilicemos y nos sentiremos en la gloria.
 
 Bien, la otra alternativa para usar colores es, como hemos dicho el map. De esta forma se el código quedaría así:
 
-```sass
+```scss
   $colors: (
     primary: #3d70b2,
     secondary: #5596e6,
@@ -174,7 +173,7 @@ Bien, la otra alternativa para usar colores es, como hemos dicho el map. De esta
 
 Y para utilizarlo en nuestro CSS, utilizariamos la función [`map-get`](http://sass-lang.com/documentation/Sass/Script/Functions.html#map_get-instance_method) que sería como una función de JavaScript y lo que hace es que nos devuelve el valor asignado a una propiedad dentro de un objeto de Sass:
 
-```sass
+```scss
 .button {
   background-color: map-get($colors, 'primary');
 }
@@ -209,7 +208,7 @@ Para finalizar, vamos a cambiar los colores que tenemos por los de esta página:
 
 Con la tipografía pasa lo mismo que con los colores. Al final tenemos un estilo tipográfico que usaremos en nuestra página y definiremos aspectos como el tamaño de fuente para el cuerpo de nuestra página, el estilo de fuente, los pesos y otro tipo de configuraciones en nuestro archivo `_variables.scss`:
 
-```sass
+```scss
 // Después de colores para poder usar las variables de los colores (e.g. $color-dark)
 
 $font-family: 'Geori', sans-serif;
@@ -224,7 +223,7 @@ $font-weight-medium: 500;
 
 Aquí también podríamos usar un map:
 
-```sass
+```scss
 $font: (
   family: 'Geori', sans-serif,
   size: 16px,
@@ -241,7 +240,7 @@ En el caso de las tipografías, aparte de añadir variables a `_variables.scss`,
 
 Un ejemplo de como quedaría el archivo de `_typography.scss` sería el siguiente:
 
-```sass
+```scss
 body {
   font-family: $font-family; // o map-get($font, 'family') y así
   color: $font-color-base;
@@ -311,7 +310,7 @@ body {
 
 // Clases de ayuda para cambiar el estilo de texto
 
-.italic  {font-style: italic;}
+.italic  { font-style: italic; }
 .light { font-weight: $font-weight-light; }
 .normal { font-weight: $font-weight-normal; }
 .medium { font-weight: $font-weight-medium; }
@@ -349,18 +348,13 @@ Además, asignaremos a `body` los estilos que consideremos necesarios pero usand
 
 * * *
 
-
-### Componentes
-
-
-
 ### Clases de ayuda
 
 A la hora de generar el CSS para crear un sistema es muy común crear clases que sirvan de ayuda para aplicar estilos en determinados casos. Estas clases suelen ir definidas en un archivo llamado `_helpers.scss` o `_utilities.scss` y suele ser el último archivo que se importa desde nuestro `main.scss` para que así las clases que definamos en éste archivo prevalezcan frente al resto por la regla de la cascada de CSS.
 
 Un ejemplo del código que podríamos encontrar en este archivo sería el siguiente:
 
-```sass
+```scss
 .block { display: block; }
 .inline { display: inline; }
 .inline-block { display: inline-block; }
