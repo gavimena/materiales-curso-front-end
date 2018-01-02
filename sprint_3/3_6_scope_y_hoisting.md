@@ -10,7 +10,7 @@
 
 ## Introducción
 
-A medida que vamos aprendiendo más y más JavaScript, es necesario que vayamos profundizando en conceptos un poco más técnicos pero que es fundamental que entendamos. Estos conceptos nos ayudarán a entender como funciona JavaScript a más bajo nivel y nos harán que captemos mejor el funcionamiento de un código y, por tanto, sepamos resolver mejor los errores que se producen y creemos un código más estable y mejor estructurado.
+A medida que vamos aprendiendo más y más JavaScript, es necesario que vayamos profundizando en conceptos un poco más técnicos pero que es fundamental que entendamos. Estos conceptos nos ayudarán a entender cómo funciona JavaScript a más bajo nivel y nos harán que captemos mejor el funcionamiento de un código y, por tanto, sepamos resolver mejor los errores que se producen y creemos un código más estable y mejor estructurado.
 
 En esta sesión veremos, en primer lugar, qué es el ámbito (scope) de una función y aprenderemos a fondo cómo funciona para tenerlo en cuenta a la hora de ver dónde declarar variables y funciones en nuestro código.
 
@@ -19,7 +19,7 @@ También veremos qué es el hoisting (que no tiene nada que ver con hosting :) )
 
 ## ¿Para qué sirve lo que vamos a ver en esta sesión?
 
-Hasta ahora hemos establecido una serie de normas por que sí, como que siempre tenemos que declarar una variable antes de usarla o que las funciones las podemos definir después de utilizarlas. También hemos comentado que las variables que creamos fuera de una función pueden usarse dentro de esta y, sin embargo, las que creamos dentro de una función no pueden ser utilizadas fuera de esta.
+Hasta ahora hemos establecido una serie de normas porque sí, como que siempre tenemos que declarar una variable antes de usarla o que las funciones las podemos definir después de utilizarlas. También hemos comentado que las variables que creamos fuera de una función pueden usarse dentro de esta y, sin embargo, las que creamos dentro de una función no pueden ser utilizadas fuera de esta.
 
 El hecho es que solo hemos definido reglas para esto y no hemos explicado el por qué detrás de cada una de ellas. Lo que vamos a ver en esta sesión nos ayudará a saber el por qué y a conocer cuál es el proceso que se produce en nuestro navegador y que influye en ese comportamiento.
 
@@ -35,9 +35,9 @@ Aprender este tipo de conceptos un poco más avanzados te aportará conocimiento
 
 ### Ámbito o scope
 
-Bien, vamos a empezar entendiendo mejor qué es el scope o el ámbito, para ello lo mejor es ponernos en situación, entender cómo es el proceso que se lleva a cabo en nuestro navegador para entender qué sucede con el código de JavaScript que generamos y como este es ejecutado.
+Bien, vamos a empezar entendiendo mejor qué es el scope o el ámbito, para ello lo mejor es ponernos en situación, entender cómo es el proceso que se lleva a cabo en nuestro navegador para entender qué sucede con el código de JavaScript que generamos y cómo este es ejecutado.
 
-En primer lugar, hay que dejar claro que no vamos a ver en detalle que sucede desde que se lee el código JavaScript hasta que se ejecuta, pero vamos a pensar como si fuesemos el intérprete de JavaScript, la parte de nuestro navegador encargada de entender JavaScript y saber qué hacer con el código.
+En primer lugar, hay que dejar claro que no vamos a ver en detalle qué sucede desde que se lee el código JavaScript hasta que se ejecuta. Pero vamos a pensar como si fuésemos el intérprete de JavaScript, la parte de nuestro navegador encargada de entender JavaScript y saber qué hacer con el código.
 
 Bien, imaginemos que tenemos el siguiente código:
 
@@ -55,12 +55,12 @@ sayHello();
 
 >Como puedes ver, este código no tiene ninguna lógica, simplemente es algo sencillo para que nos sirva de ejemplo.
 
-¿Sabrías adivinar que va a mostrar? Piensalo detenidamente (no vale ejecutar el código 👮🏻‍♀️).
+¿Sabrías adivinar que va a mostrar? Piénsalo detenidamente (no vale ejecutar el código 👮🏻‍♀️).
 
-Bien, antes de saber cuál será el resultado, vamos a ver que pasos sigue este código.
+Bien, antes de saber cuál será el resultado, vamos a ver qué pasos sigue este código.
 
 JavaScript en este caso realiza los siguientes pasos:
-1. Genera la variable `greeting` en el ámbito global y posteriormente le asigna `Hola!`
+1. Genera la variable `greeting` en el ámbito global y posteriormente le asigna `Hola`
 1. Declara una función (crea la función)
 1. Ejecuta la función sayHello
 1. Al ejecutar la función `sayHello` y por tanto el código que contiene, se crea una variable `greeting` en el ámbito de la función `sayHello`
@@ -70,7 +70,7 @@ Bien, la clave en estos pasos reside en una palabra, ámbito. Hemos hablado de �
 
 En JavaScript, la única forma de generar un nuevo ámbito es creando una función. Dentro de esta todo lo que definamos (variables o funciones) estará encapsulado y solo se podrá acceder desde dentro de la función, desde su ámbito, fuera de este será como si no existiese.
 
->NOTA: en realidad es mentira que la única forma de crear un nuevo ámbito en JavaScript es a través de las funciones. Existe otra manera para crear un nuevo ámbito en la versión que estamos utilizando de JavaScript pero no la vamos a ver en este curso. SI que veremos más adelante, una nueva forma de crear ámbitos en la nueva versión de JavaScript, pero por el momento pensemos que solo se puede generar un nuevo ámbito usando funciones.
+>NOTA: en realidad es mentira que la única forma de crear un nuevo ámbito en JavaScript es a través de las funciones. Existe otra manera para crear un nuevo ámbito en la versión que estamos utilizando de JavaScript pero no la vamos a ver en este curso. Sí que veremos más adelante, una nueva forma de crear ámbitos en la nueva versión de JavaScript, pero por el momento pensemos que solo se puede generar un nuevo ámbito usando funciones.
 
 Por lo tanto, cada vez que creemos una nueva función estaremos generando a la par un nuevo ámbito. Todo lo que esté fuera de funciones y se defina directamente en el código, pertenecerá al denominado ámbito global, que es el que engloba todo nuestro código y es accesible desde cualquier parte.
 
@@ -78,42 +78,42 @@ Como esto puede ser un poco lioso, vamos a ilustrar cuáles serían los ámbitos
 
 Bien, volviendo a los pasos anteriores, vamos a ilustrar cada uno de ellos para ver que sucede en cada uno de ellos:
 
-#### 1 Genera la variable `greeting` en el ámbito global y posteriormente le asigna `Hola!`
+#### 1. Genera la variable `greeting` en el ámbito global y posteriormente le asigna `Hola`
 
-En este paso añadimos al scope global una variable greeting y guardamos el valor de Hola dentro de ella. En la imagen, el fondo azul es el alcance del scope global que, como hemos comentado anteriormente, si generamos una variable o función en el scope global esta podrá ser usada en cualquier parte de nuestro JavaScript, de ahí que el alcance de este scope (donde se pueden utilizar las variables y funciones creadas en él) se extienda a todo el código.
+En este paso añadimos al scope global una variable `greeting` y guardamos el valor de `Hola` dentro de ella. En la imagen, el fondo azul es el alcance del *scope* global que, como hemos comentado anteriormente, si generamos una variable o función en el scope global esta podrá ser usada en cualquier parte de nuestro JavaScript, de ahí que el alcance de este *scope* (donde se pueden utilizar las variables y funciones creadas en él) se extienda a todo el código.
 
-#### 2 Declara una función (crea la función)
+#### 2. Declara una función (crea la función)
 
 Al crear la función `sayHello`, generamos un nuevo ámbito, por lo que todas las variables que se creen dentro de la función ya no estarán incluidas en el ámbito global, sino en el de esta función. Lo mismo sucede con los parámetros, que estarán incluidos en el ámbito.
 
-#### 3 Al ejecutar la función `sayHello` y por tanto el código que contiene, se crea una variable `greeting` en el ámbito de la función `sayHello`
+#### 3. Al ejecutar la función `sayHello` y por tanto el código que contiene, se crea una variable `greeting` en el ámbito de la función `sayHello`
 
 Bien, hemos creado una variable y la hemos creado dentro de `sayHello`. En el momento de crearla, esta se añadirá al scope de la función.
 
-#### 4 Se ejecuta el `console.log`, en este caso como le hemos pasado como argumento la variable `greeting`, buscará esa variable en el ámbito más próximo y utilizará el valor que almacena
+#### 4. Se ejecuta el `console.log`, en este caso como le hemos pasado como argumento la variable `greeting`, buscará esa variable en el ámbito más próximo y utilizará el valor que almacena
 
-Bien, este es una de las partes clave para entender cómo funciona el scope. En esta parte del código estamos utilizando la variable `greeting` para poder utilizar el valor que almacena y por tanto, que este se muestre en el `console.log`. ¿Qué hace JavaScript en este caso? Pues muy simple, busca si esa variable existe en el ámbito actual y sino en el ámbito que está por encima y sino en el de encima de ese y así continuamente.
+Bien, este es una de las partes clave para entender cómo funciona el *scope*. En esta parte del código estamos utilizando la variable `greeting` para poder utilizar el valor que almacena y por tanto, que este se muestre en el `console.log`. ¿Qué hace JavaScript en este caso? Pues muy simple, busca si esa variable existe en el ámbito actual y sino en el ámbito que está por encima y sino en el de encima de ese y así continuamente.
 
-En este caso busca en el ámbito actual, como el código se está ejecutando dentro de la función `sayHello`, el ámbito actual será el ámbito de la función, por lo que en primer lugar buscará ahí si existe la variable que necesita (`greeting`). Como si existe ahí, utiliza esa variable para coger el valor y por tanto, como en este caso el greeting de dentro de la función guarda `'Hello'`, se sustituirá por ese texto y el console.log mostrará `'Hola'`.
+En este caso busca en el ámbito actual, como el código se está ejecutando dentro de la función `sayHello`, el ámbito actual será el ámbito de la función, por lo que en primer lugar buscará ahí si existe la variable que necesita (`greeting`). Como sí existe ahí, utiliza esa variable para coger el valor y por tanto, como en este caso el `greeting` de dentro de la función guarda `'Hello'`, se sustituirá por ese texto y el `console.log` mostrará `'Hello'`.
 
-Si en este caso no hubiésemos declarado una variable greeting en la función, al ejecutar el código, el intérprete de JavaScript (el navegador) buscaría esa variable en el ámbito de `sayHello` y al no encontrarla iria subiendo en ámbitos, en este caso iria directamente al ámbito global porque es el único por encima de `sayHello` y trataría de buscar ahí la variable. Como ese scope tiene una variable greeting definida, utilizará esa y por tanto en este caso el console.log mostrará `'Hola'`
+Si en este caso no hubiésemos declarado una variable `greeting` en la función, al ejecutar el código, el intérprete de JavaScript (el navegador) buscaría esa variable en el ámbito de `sayHello` y al no encontrarla iría subiendo en ámbitos. En ese caso iría directamente al ámbito global porque es el único por encima de `sayHello` y trataría de buscar ahí la variable. Como ese scope tiene una variable `greeting` definida, utilizará esa y por tanto en este caso el `console.log` mostrará `'Hola'`.
 
 Por último, si tras buscar en todos los ámbitos que afectan a un código no se encuentra ninguna variable que coincida con la utilizada, se producirá un error de JavaScript llamado `ReferenceError` porque no encuentra la referencia a la variable utilizada, no encuentra ningún sitio donde se haya declarado esa variable y por tanto hay un error de referencia (porque la referencia no existe).
 
-El scope es algo que no podemos ver pero que debemos tener en cuenta y entender para prever cual será el resultado de nuestro código. Es un proceso que no vemos pero está ahí y existe e influye en cómo se ejecuta el código.
+El *scope* es algo que no podemos ver pero que debemos tener en cuenta y entender para prever cuál será el resultado de nuestro código. Es un proceso que no vemos pero está ahí y existe e influye en cómo se ejecuta el código.
 
-Por último, podemos saber cual es el scope local y global en un momento determinado utilizando la pestaña sources de las Chrome Dev Tools. Para saberlo, simplemente pulsamos en una línea de código para generar una parada en el código (breakpoint), recargamos la página y en el panel derecho nos aparecerá una sección que tiene el nombre de scope. Dentro de esta podremos ver otras dos subsecciones, local y global. Local hará referencia al scope local (si se está ejecutando una función, será al scope de la función) y global hará referencia al scope global, a todas las variables y funciones disponibles a lo largo de todo nuestro código.
+Por último, podemos saber cuál es el *scope* local y global en un momento determinado utilizando la pestaña *sources* de las Chrome Dev Tools. Para saberlo, simplemente pulsamos en una línea de código para generar una parada en el código (*breakpoint*), recargamos la página y en el panel derecho nos aparecerá una sección que tiene el nombre de *scope*. Dentro de esta podremos ver otras dos subsecciones, local y global. Local hará referencia al *scope* local (si se está ejecutando una función, será al *scope* de la función) y global hará referencia al *scope* global, a todas las variables y funciones disponibles a lo largo de todo nuestro código.
 
-Y hasta aquí sería la descripción de qué es el scope o ámbito en JavaScript. Si no te ha quedado todo perfectamente claro y lo has pillado a la primera no te preocupes, este concepto es algo que a veces cuesta más, la idea es explicarlo y que, a base de consultarlo y volver de vez en cuando a esta explicación se llegue a un punto de entendimiento del concepto. Por el momento, con entender que el scope determina el alcance de nuestras variables y funciones y como funciona a grandes rasgos es más que suficiente, la práctica y repaso a base de constancia con el código harán el resto para entender a fondo de qué se trata.
+Y hasta aquí sería la descripción de qué es el *scope* o ámbito en JavaScript. Si no te ha quedado todo perfectamente claro y no lo has pillado a la primera no te preocupes, este concepto es algo que a veces cuesta más. La idea es explicarlo y que, a base de consultarlo y volver de vez en cuando a esta explicación se llegue a un punto de entendimiento del concepto. Por el momento, con entender que el *scope* determina el alcance de nuestras variables y funciones y cómo funciona a grandes rasgos es más que suficiente. La práctica y repaso a base de constancia con el código harán el resto para entender a fondo de qué se trata.
 
 
 * * *
 
 EJERCICIO 1: Averigua el resultado
 
-A continuación vamos a poner una serie de códigos. Estos no tienen un sentido lógico más allá de practicar con lo aprendido sobre el scope. Sin ejecutarlos, intenta averiguar qué se mostrará en el `console.log` de cada uno de ellos.
+A continuación vamos a poner una serie de códigos. Estos no tienen un sentido lógico más allá de practicar con lo aprendido sobre el *scope*. Sin ejecutarlos, intenta averiguar qué se mostrará en el `console.log` de cada uno de ellos.
 
->NOTA: Los ejercicios son parecidos pero cada uno de ellos tiene una modificación. Lo mejor es leer paso a paso que hace cada uno aunque ya lo hayamos leido antes para saber cuál será el proceso que realicen.
+>NOTA: Los ejercicios son parecidos pero cada uno de ellos tiene una modificación. Lo mejor es leer paso a paso que hace cada uno aunque ya lo hayamos leído antes para saber cuál será el proceso que realicen.
 
 ```js
 var message = 'El resultado será A';
@@ -147,7 +147,7 @@ function changeMessage() {
 console.log(message);
 ```
 
-Una vez hayas intentado averiguar cuál es el resultado de estos código, comprueba si has acertado o no ejecutándolos en tu navegador.
+Una vez hayas intentado averiguar cuál es el resultado de estos códigos, comprueba si has acertado o no ejecutándolos en tu navegador.
 
 * * *
 
@@ -163,7 +163,7 @@ EJERCICIO 3: Aprendiendo a averiguar el scope con las Dev Tools
 
 Abre tu ejercicio de evaluación individual del segundo sprint (el de adivinar el número aleatorio) y después abre el panel de las Chrome Dev Tools. Selecciona la pestaña _Sources_, coloca algunas paradas en el código pulsando en los números de línea del editor de código que aparece. Recarga la página para que se vaya parando en cada una de las líneas y comprueba en el panel derecho cual es el scope en cada caso.
 
-Prueba a poner paradas tanto dentro de funciones como fuera para ver qué sucede
+Prueba a poner paradas tanto dentro de funciones como fuera para ver qué sucede.
 
 * * *
 
@@ -177,18 +177,18 @@ Imaginemos que tenemos el siguiente código:
 var lower = 1;
 var upper = 100;
 
-function getRandomNumber() {
+function getRandomNumber(min, max) {
   console.log('Vamos a crear un número random');
 
   var message = 'Se ha generado un número aleatorio: ';
-  var result = Math.floor((Math.random() * 10) + 1);
+  var result = Math.floor(Math.random() * (max - min)) + min);
 
   console.log(message + result);
 
   return result;
 }
 
-console.log('Mensaje estupido');
+console.log('Mensaje estúpido');
 
 var randomNumber = getRandomNumber(lower, upper);
 ```
@@ -200,14 +200,14 @@ var lower;
 var upper;
 var randomNumber;
 
-function getRandomNumber() {
+function getRandomNumber(min, max) {
   var message;
   var result;
 
   console.log('Vamos a crear un número random');
 
   message = 'Se ha generado un número aleatorio: ';
-  result = Math.floor((Math.random() * 10) + 1);
+  result = Math.floor(Math.random() * (max - min)) + min);
 
   console.log(message + result);
 
@@ -217,14 +217,14 @@ function getRandomNumber() {
 lower = 1;
 upper = 100;
 
-console.log('Mensaje estupido');
+console.log('Mensaje estúpido');
 
 randomNumber = getRandomNumber(lower, upper);
 ```
 
-Como se puede ver, lo que hace básicamente es mover las declaraciones de funciones y variables al principio del scope. Esto se ve muy claro si nos fijamos en que la declaración de variables se han colocado antes que la ejecución de los `console.log`.
+Como se puede ver, lo que hace básicamente es mover las declaraciones de funciones y variables al principio del *scope*. Esto se ve muy claro si nos fijamos en que la declaración de variables se han colocado antes que la ejecución de los `console.log`.
 
-¡OJO! En el caso de las variables, solo se se aplica el hoisting a la declaración (`var lower`) haciendo que esta se coloque al principio del código. La asignación (`lower = 1`) no se mueve, por eso siempre se recomienda que antes de usar una variable siempre la declaremos y asignemos, para que en el momento de usarla ya tenga un valor definido.
+**¡OJO!** En el caso de las variables, solo se se aplica el hoisting a la declaración (`var lower`) haciendo que esta se coloque al principio del código. La asignación (`lower = 1`) no se mueve, por eso siempre se recomienda que antes de usar una variable siempre la declaremos y asignemos, para que en el momento de usarla ya tenga un valor definido.
 
 Saber esto nos ayuda a entender varias cosas:
 
@@ -236,7 +236,7 @@ Saber esto nos ayuda a entender varias cosas:
 
 EJERCICIO 3: Comprobando cómo se aplica el hoisting con las Chrome Dev Tools
 
-Abre tu ejercicio de evaluación individual del segundo sprint (el de adivinar el número aleatorio), pon una parada en el código y comprueba si en el scope se han añadido al scope para ver cómo JavaScript aplica el _hoisting_.
+Abre tu ejercicio de evaluación individual del segundo sprint (el de adivinar el número aleatorio). Pon una parada en el código y comprueba si las variables se han añadido al scope para ver cómo JavaScript aplica el _hoisting_.
 
 * * *
 
