@@ -40,7 +40,8 @@ También necesitaremos crear componentes con mayores garantías de funcionar. Pa
 
 ## Valores por defecto de las `props`
 
-[STUB]
+En ocasiones querremos definir que algunas `props` no sean obligatorias, y cuando no se pasen querremos usar un valor por defecto. Esto se puede conseguir en React con `defaultProps`. Será un objeto con el nombre de las `props` que queremos que tengan valor por defecto y su correspondiente valor, y cuando se instancie el componente, se cogerán las `props` que falten de ese objeto. Lo definimos como una propiedad del componente, `NombreDelComponente.defaultProps = {}`, después de declarar la clase:
+
 
 ```js
 import React from 'react';
@@ -48,8 +49,8 @@ import React from 'react';
 class Button extends React.Component {
   render() {
     return (
-      <button className="btn" type="button" name="button">
-        {this.props.label}
+      <button className={ `btn btn-${this.props.style}` } type="button" name="button">
+        { this.props.label }
       </button>
     )
   }
@@ -57,6 +58,7 @@ class Button extends React.Component {
 
 // Así definimos las defaultProps
 Button.defaultProps = {
+  style: 'primary', // from Bootstrap classes: primary, secondary, success, info, warning, danger, link
   label: 'Aceptar'
 };
 ```
@@ -69,8 +71,10 @@ Button.defaultProps = {
 
 ## Recursos externos
 
-### {{resource.name}}
+### React Docs
 
-{{resource.description}}
+Documentación oficial de React (en inglés).
 
-- [{{resource.link_name}}]({{resource.url}})
+- [Validar propiedades con `propTypes`) y propiedades por defecto](https://reactjs.org/docs/typechecking-with-proptypes.html)
+
+
