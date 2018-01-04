@@ -3,11 +3,11 @@
 ## Contenidos
 - [Introducción](#introducción)
 - [¿Para qué sirve lo que vamos a ver en esta sesión?](#¿para-qué-sirve-lo-que-vamos-a-ver-en-esta-sesión)
-- Componentes padre e hijo (madre e hija)
-- Ejemplos de app con varios componentes y cómo se pasan datos con las `props`
-- `propTypes`
-- Valores por defecto de las `props`
-- Uso de `children` para acceder a los componentes hijo cuando no los conoces
+- [Componentes padre e hijo (madre e hija)](#componentes-padre-e-hijo-madre-e-hija)
+- [Ejemplos de app con varios componentes y cómo se pasan datos con las `props`](#ejemplos-de-app-con-varios-componentes-y-cómo-se-pasan-datos-con-las-props)
+- [`propTypes`](#proptypes)
+- [Valores por defecto de las `props`](#valores-por-defecto-de-las-props)
+- [Uso de `children` para acceder a los componentes hijo cuando no los conoces](#uso-de-children-para-acceder-a-los-componentes-hijo-cuando-no-los-conoces)
 
 ## Introducción
 
