@@ -66,7 +66,36 @@ Button.defaultProps = {
 
 ## Uso de `children` para acceder a los componentes hijo cuando no los conoces
 
-[STUB]
+Algunas veces, al declarar un componente no sabremos qué otros componentes podrá contener dentro. Por ejemplo, un componente `Popup` o un componente genérico `Header`. En esos casos podremos usar una `prop` especial, `children`, para pasar directamente elementos:
+
+```js
+import React from 'react';
+
+class Popup extends React.Component {
+  render() {
+    return (
+      <div className={ `app--popup app--popup_${props.color}` }>
+        { props.children }
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Popup color="blue">
+    <h1>Welcome</h1>
+    <p>
+      Thank you for visiting our webpage!
+    </p>
+    <p>
+      We hope you enjoy our new shiny site!
+    </p>
+  </Popup>,
+  document.getElementById('root')
+);
+```
+
+Como se puede observar en el ejemplo, inyectaremos `props.children` en el JSX del componente genérico como una variable cualquiera. Cuando usemos el componente, escribiremos el contenido en JSX dentro de sus etiquetas de apertura (`<Popup>`) y de cierre (`</Popup>`).
 
 
 ## Recursos externos
@@ -76,5 +105,10 @@ Button.defaultProps = {
 Documentación oficial de React (en inglés).
 
 - [Validar propiedades con `propTypes`) y propiedades por defecto](https://reactjs.org/docs/typechecking-with-proptypes.html)
+- [Composición (`children`)](https://reactjs.org/docs/composition-vs-inheritance.html#containment)
 
+### Egghead
 
+Serie de clases en vídeo que introduce y explora los fundamentos básicos de React.
+
+- [Cómo usar componentes como `children` de otros componentes en React](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values)
