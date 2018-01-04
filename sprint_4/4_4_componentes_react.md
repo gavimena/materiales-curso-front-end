@@ -1,5 +1,8 @@
 # Componentes en React
 
+[codepen-default-values]: https://codepen.io/adalab/pen/JMrJdK?editors=0010
+[codepen-component-children]: https://codepen.io/adalab/pen/WdZEQv?editors=0010
+
 ## Contenidos
 - [Introducción](#introducción)
 - [¿Para qué sirve lo que vamos a ver en esta sesión?](#¿para-qué-sirve-lo-que-vamos-a-ver-en-esta-sesión)
@@ -8,6 +11,7 @@
 - [`propTypes`](#proptypes)
 - [Valores por defecto de las `props`](#valores-por-defecto-de-las-props)
 - [Uso de `children` para acceder a los componentes hijo cuando no los conoces](#uso-de-children-para-acceder-a-los-componentes-hijo-cuando-no-los-conoces)
+
 
 ## Introducción
 
@@ -20,7 +24,7 @@ En esta sesión veremos cómo definir componentes más completos y robustos, y e
 
 Según vayamos creando aplicaciones web más grandes con React, necesitaremos definir mayor número de componentes que se relacionarán entre sí. Veremos cómo se relacionan los componentes padre/madre con los componentes hijo/hija, y un tipo especial de componente que tendrá más componentes arbitrarios en su interior.
 
-También necesitaremos crear componentes con mayores garantías de funcionar. Para eso veremos `propTypes`, para obligar a las `props` a ser de un tipo de dato concreto, y cómo asignar valores por defecto a las `props`.  
+También necesitaremos crear componentes con mayores garantías de funcionar. Para eso veremos `propTypes`, para obligar a las `props` a ser de un tipo de dato concreto, y cómo asignarles valores por defecto para hacer `props` opcionales.  
 
 
 ## Componentes padre e hijo (madre e hija)
@@ -67,7 +71,7 @@ import React from 'react';
 class Button extends React.Component {
   render() {
     return (
-      <button className={ `btn btn-${this.props.style}` } type="button" name="button">
+      <button className={ `btn btn-${this.props.styling}` } type="button" name="button">
         { this.props.label }
       </button>
     )
@@ -76,10 +80,14 @@ class Button extends React.Component {
 
 // Así definimos las defaultProps
 Button.defaultProps = {
-  style: 'primary', // from Bootstrap classes: primary, secondary, success, info, warning, danger, link
+  styling: 'primary', // from Bootstrap classes: primary, secondary, success, info, warning, danger, link
   label: 'Aceptar'
 };
 ```
+
+[Valores por defecto en Codepen][codepen-default-values]
+
+> No hace falta importar el paquete `prop-types` para usar valores por defecto
 
 
 ## Uso de `children` para acceder a los componentes hijo cuando no los conoces
@@ -92,16 +100,16 @@ import React from 'react';
 class Popup extends React.Component {
   render() {
     return (
-      <div className={ `app--popup app--popup_${props.color}` }>
-        { props.children }
+      <div className={ `alert alert-${this.props.styling}` } role="alert">
+        { this.props.children }
       </div>
     );
   }
 }
 
 ReactDOM.render(
-  <Popup color="blue">
-    <h1>Welcome</h1>
+  <Popup styling="info">
+    <h1 className="horizontal-center">Welcome</h1>
     <p>
       Thank you for visiting our webpage!
     </p>
@@ -109,9 +117,11 @@ ReactDOM.render(
       We hope you enjoy our new shiny site!
     </p>
   </Popup>,
-  document.getElementById('root')
+  document.getElementById('react-root')
 );
 ```
+
+[Componentes y `children` en Codepen][codepen-component-children]
 
 Como se puede observar en el ejemplo, inyectaremos `props.children` en el JSX del componente genérico como una variable cualquiera. Cuando usemos el componente, escribiremos el contenido en JSX dentro de sus etiquetas de apertura (`<Popup>`) y de cierre (`</Popup>`).
 
