@@ -25,7 +25,25 @@ También necesitaremos crear componentes con mayores garantías de funcionar. Pa
 
 ## Componentes padre e hijo (madre e hija)
 
-[STUB]
+Vimos en la sesión anterior cómo usar un componente dentro de otro: el componente `CatList` renderizaba tres componentes `RandomCat`. Para referirnos a componentes que renderizan otros usaremos el término **componente padre o madre**, y para referirnos a componentes que son renderizados por otros, **componente hijo o hija**.
+
+> No debemos confundir esta terminología con la terminología de la herencia de clases. Aunque las dos tengan jerarquía, esta terminología representa relaciones de **composición**, no de herencia. En React solo existe herencia en el hecho de que todos los componentes son subclases de `React.Component`.
+
+Los componentes padre/madre pueden tener múltiples componentes hijo/hija, pero los componentes hijo/hija solo tienen un componente padre/madre. Cabe destacar que un componente puede ser hijo/hija de un componente padre/madre y a la vez ser padre/madre de otros componentes hijo/hija.
+
+```
+                  ┌───────────┐
+                  │  CatList  │
+                  └─┬───┬───┬─┘
+                    ┊   ┊   ┊
+       ┌╌╌╌╌╌╌╌╌╌╌╌╌┘   ┊   └╌╌╌╌╌╌╌╌╌╌╌╌┐
+       ┊                ┊                ┊
+┌──────┴──────┐  ┌──────┴──────┐  ┌──────┴──────┐
+│  RandomCat  │  │  RandomCat  │  │  RandomCat  │
+└─────────────┘  └─────────────┘  └─────────────┘
+```
+
+Estas relaciones forman una jerarquía importante para entender React. Desde los componentes padre/madre podremos pasar datos _hacia abajo_ a los componentes hijo/hija, mediante las `props`, pero **no al revés**. Un hijo/a no podrá pasar datos _hacia arriba_ libremente. Veremos en una sesión posterior cómo "solucionar" los problemas que _a priori_ parece generar este **flujo unidireccional**.
 
 
 ## Ejemplos de app con varios componentes y cómo se pasan datos con las `props`
