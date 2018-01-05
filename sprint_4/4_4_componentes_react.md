@@ -8,9 +8,9 @@
 - [¿Para qué sirve lo que vamos a ver en esta sesión?](#¿para-qué-sirve-lo-que-vamos-a-ver-en-esta-sesión)
 - [Componentes padre e hijo (madre e hija)](#componentes-padre-e-hijo-madre-e-hija)
 - [Ejemplos de app con varios componentes y cómo se pasan datos con las `props`](#ejemplos-de-app-con-varios-componentes-y-cómo-se-pasan-datos-con-las-props)
-- [`propTypes`](#proptypes)
-- [Valores por defecto de las `props`](#valores-por-defecto-de-las-props)
 - [Uso de `children` para acceder a los componentes hijo cuando no los conoces](#uso-de-children-para-acceder-a-los-componentes-hijo-cuando-no-los-conoces)
+- [Valores por defecto de las `props`](#valores-por-defecto-de-las-props)
+- [`props` tipadas con `propTypes`](#props-tipadas-com-proptypes)
 
 
 ## Introducción
@@ -55,15 +55,45 @@ Estas relaciones forman una jerarquía importante para entender React. Desde los
 [STUB]
 
 
-## `propTypes`
+## Uso de `children` para acceder a los componentes hijo cuando no los conoces
 
-[STUB]
+Algunas veces, al declarar un componente no sabremos o no nos importará qué otros componentes podrá contener dentro. Por ejemplo, un componente `Popup` o un componente genérico `Header`. En esos casos podremos usar una `prop` especial, `children`, para pasar directamente elementos:
+
+```js
+import React from 'react';
+
+class Popup extends React.Component {
+  render() {
+    return (
+      <div className={ `alert alert-${this.props.styling}` } role="alert">
+      { this.props.children }
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Popup styling="info">
+  <h1 className="horizontal-center">Welcome</h1>
+  <p>
+  Thank you for visiting our webpage!
+  </p>
+  <p>
+  We hope you enjoy our new shiny site!
+  </p>
+  </Popup>,
+  document.getElementById('react-root')
+);
+```
+
+[Componentes y `children` en Codepen][codepen-component-children]
+
+Como se puede observar en el ejemplo, inyectaremos `props.children` en el JSX del componente genérico como una variable cualquiera. Cuando usemos el componente, escribiremos el contenido en JSX dentro de sus etiquetas de apertura (`<Popup>`) y de cierre (`</Popup>`).
 
 
 ## Valores por defecto de las `props`
 
 En ocasiones querremos definir que algunas `props` no sean obligatorias, y cuando no se pasen querremos usar un valor por defecto. Esto se puede conseguir en React con `defaultProps`. Será un objeto con el nombre de las `props` que queremos que tengan valor por defecto y su correspondiente valor, y cuando se instancie el componente, se cogerán las `props` que falten de ese objeto. Lo definimos como una propiedad del componente, `NombreDelComponente.defaultProps = {}`, después de declarar la clase:
-
 
 ```js
 import React from 'react';
@@ -90,40 +120,9 @@ Button.defaultProps = {
 > No hace falta importar el paquete `prop-types` para usar valores por defecto
 
 
-## Uso de `children` para acceder a los componentes hijo cuando no los conoces
+## `props` tipadas con `propTypes`
 
-Algunas veces, al declarar un componente no sabremos qué otros componentes podrá contener dentro. Por ejemplo, un componente `Popup` o un componente genérico `Header`. En esos casos podremos usar una `prop` especial, `children`, para pasar directamente elementos:
-
-```js
-import React from 'react';
-
-class Popup extends React.Component {
-  render() {
-    return (
-      <div className={ `alert alert-${this.props.styling}` } role="alert">
-        { this.props.children }
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Popup styling="info">
-    <h1 className="horizontal-center">Welcome</h1>
-    <p>
-      Thank you for visiting our webpage!
-    </p>
-    <p>
-      We hope you enjoy our new shiny site!
-    </p>
-  </Popup>,
-  document.getElementById('react-root')
-);
-```
-
-[Componentes y `children` en Codepen][codepen-component-children]
-
-Como se puede observar en el ejemplo, inyectaremos `props.children` en el JSX del componente genérico como una variable cualquiera. Cuando usemos el componente, escribiremos el contenido en JSX dentro de sus etiquetas de apertura (`<Popup>`) y de cierre (`</Popup>`).
+[STUB]
 
 
 ## Recursos externos
