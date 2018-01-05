@@ -2,8 +2,12 @@
 
 [codepen-default-values]: https://codepen.io/adalab/pen/JMrJdK?editors=0010
 [codepen-component-children]: https://codepen.io/adalab/pen/WdZEQv?editors=0010
+[codepen-props-typechecking]: https://codepen.io/adalab/pen/ZvXqvm?editors=0010
 
 ## Contenidos
+
+[sección-recursos-externos]: #recursos-externos
+
 - [Introducción](#introducción)
 - [¿Para qué sirve lo que vamos a ver en esta sesión?](#¿para-qué-sirve-lo-que-vamos-a-ver-en-esta-sesión)
 - [Componentes padre e hijo (madre e hija)](#componentes-padre-e-hijo-madre-e-hija)
@@ -122,7 +126,113 @@ Button.defaultProps = {
 
 ## `props` tipadas con `propTypes`
 
-[STUB]
+JavaScript no tiene un sistema de tipado fuerte, lo que significa que nuestras variables pueden almacenar cualquier tipo de valor. Podemos declarar una variable `const nameOfAPerson` que debería almacenar una `string` y, sin embargo, podemos asignarle un valor numérico como `4`, tanto en su inicialización como en un futuro, si fuera `let` o `var`. Cuando controlamos una pequeña base de código, esto no suppone ningún problema, pero existen dos casos en los que es más probable que empiecen a surgir incoherencias o errores:
+
+- Cuando nuestra base de código es o va a ser muy grande (escalabilidad)
+- Cuando nuestro código será usado por otras personas (amabilidad, ;)
+
+Existen algunas variantes de JavaScript como [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) o [Flow](https://flow.org/en/docs/getting-started/) que resuelven este problema añadiendo tipos a todo nuestro código. Estas opciones resuelven el primer punto de arriba, pero no el segundo.
+
+Afortunadamente, React tiene un sistema de comprobación de tipos para las `props` de nuestros componentes que nos permitirá que sean más robustos, las `propTypes`. Se utiliza muy parecido a las `defaultProps`, salvo que tendremos que instalar e importar el paquete `prop-types` de `npm` primero. Lo instalaremos en nuestro proyecto desde un terminal:
+
+```sh
+npm install --save prop-types
+```
+
+Después, ya en nuestro archivo JavaScript, lo importaremos como un módulo después de importar `React`:
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+// ...
+```
+
+Del mismo modo que con `defaultProps` y después de declarar el componente, definimos una propiedad del componente, `NombreDelComponente.propTypes = {}`, que será un objeto con el nombre de las props y el tipo que queremos que sea:
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class Button extends React.Component {
+  render() {
+    return (
+      <button className={ `btn btn-${this.props.styling}` } type="button" name="button">
+        { this.props.label }
+      </button>
+    )
+  }
+}
+
+// Así definimos las propTypes
+Button.propTypes = {
+  styling: PropTypes.string,
+  label: PropTypes.string
+};
+```
+
+Podemos declarar los siguientes tipos básicos de JavaScript:
+
+- `PropTypes.array` para arrays
+- `PropTypes.bool` para booleanos
+- `PropTypes.func` para funciones
+- `PropTypes.number` para números
+- `PropTypes.object` para objetos
+- `PropTypes.string` para cadenas de texto
+
+También podemos declarar tipos más complejos:
+
+- `PropTypes.element` para elementos/componentes de React
+- `PropTypes.instanceOf(Class)` para una instancia de una clase; en este ejemplo, `Class`
+- `PropTypes.arrayOf(PropTypes.number)` para arrays que contengan solo un tipo básico; en este ejemplo, números
+- `PropTypes.oneOf(['apple', 'pear', 'lemon', 'orange'])` para valores limitados a los del array especificado
+- Y más. La lista completa está en los [enlaces externos][sección-recursos-externos]
+
+
+Además de todo esto, podemos obligar a que se le pase valor a la `prop` añadiendo `.isRequired` a cualquiera de los tipos:
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class Button extends React.Component {
+  // class body
+}
+
+const stylingValues = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'link'];
+Button.propTypes = {
+  label: PropTypes.string,
+  styling: PropTypes.oneOf(stylingValues).isRequired // obligamos a que tenga valor
+};
+
+// Y también definimos valores por defecto
+Button.defaultProps = {
+  // no incluímos "styling" porque con propTypes y "isRequired" obligamos a que se pase un valor
+  label: 'Aceptar'
+};
+```
+
+[Validar `props` de React en Codepen][codepen-props-typechecking]
+
+Podemos combinar `propTypes` con `children` también, y obligar a que nuestro componente tenga un solo hijo/a, por ejemplo:
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class VerticalCenter extends React.Component {
+  render() {
+    return (
+      <div className="vertical-center">
+        { this.props.children }
+      </div>
+    );
+  }
+}
+
+VerticalCenter.propTypes = {
+  children: PropTypes.element.isRequired
+};
+```
 
 
 ## Recursos externos
@@ -131,8 +241,10 @@ Button.defaultProps = {
 
 Documentación oficial de React (en inglés).
 
-- [Validar propiedades con `propTypes`) y propiedades por defecto](https://reactjs.org/docs/typechecking-with-proptypes.html)
-- [Composición (`children`)](https://reactjs.org/docs/composition-vs-inheritance.html#containment)
+- [Composición de componentes (`children`)](https://reactjs.org/docs/composition-vs-inheritance.html#containment)
+- [Validar propiedades con `propTypes`) y valores por defecto](https://reactjs.org/docs/typechecking-with-proptypes.html):
+  - [Lista completa de tipos y validadores con `PropTypes`](https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes)
+  - [Valores por defecto](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values)
 
 ### Egghead
 
