@@ -94,6 +94,14 @@ ReactDOM.render(
 
 Como se puede observar en el ejemplo, inyectaremos `props.children` en el JSX del componente genérico como una variable cualquiera. Cuando usemos el componente, escribiremos el contenido en JSX dentro de sus etiquetas de apertura (`<Popup>`) y de cierre (`</Popup>`).
 
+* * *
+
+**EJERCICIO 1**:
+
+[STUB]
+
+* * *
+
 
 ## Valores por defecto de las `props`
 
@@ -122,6 +130,14 @@ Button.defaultProps = {
 [Valores por defecto en Codepen][codepen-default-values]
 
 > No hace falta importar el paquete `prop-types` para usar valores por defecto
+
+* * *
+
+**EJERCICIO 2**:
+
+[STUB]
+
+* * *
 
 
 ## `props` tipadas con `propTypes`
@@ -233,6 +249,14 @@ VerticalCenter.propTypes = {
   children: PropTypes.element.isRequired
 };
 ```
+
+* * *
+
+**EJERCICIO 3**:
+
+[STUB]
+
+* * *
 
 
 ## Recursos externos
