@@ -94,11 +94,15 @@ Ahora, desde un componente padre para crear un item y pasarle la información po
 <Item
   name="Cereales con chocolate"
   description="Cereales rellenos de chocolate"
-  quantity="2"
+  quantity={2}
   category="Cereales"
-  price="5"
+  price={5}
 />
 ```
+
+Fíjate que cuando queremos pasar datos distintos a una cadena, tendremos que usar los {} para incrustar JS, en este caso, para meter un número.
+
+> NOTA: el valor de los atributos de un componente en JSX debe ser una cadena (entre comillas) o una expresión JS (entre llaves)
 
 Para ver mejor cómo funciona, hemos creado otro componente `ItemList` que nos sirve para manejar listas de items. En este caso, va a crear varios items:
 
@@ -111,18 +115,18 @@ class ItemList extends React.Component {
           <Item
             name="Cereales con chocolate"
             description="Cereales rellenos de chocolate"
-            quantity="2"
+            quantity={2}
             category="Cereales"
-            price="5"
+            price={5}
           />
         </li>
         <li>
           <Item
             name="Hamburguesa con queso"
             description="Hamburguesa rica y saludable"
-            quantity="1"
+            quantity={1}
             category="Fast-food"
-            price="15"
+            price={15}
           />
         </li>
         //...
@@ -132,8 +136,13 @@ class ItemList extends React.Component {
 }
 ```
 
-Echa un ojo al [ejemplo en codepen](codepen-props-example), e intenta añadir un nuevo `Item` a la lista.
+* * *
 
+**EJERCICIO 1**:
+
+Echa un ojo al [ejemplo anterior en codepen](codepen-props-example), e intenta añadir un nuevo `Item` a la lista. Si tuviéramos los datos de cada item en un array de objetos (como variable global), ¿serías capaz de crear el JSX que devuelve el método `render` de `ItemList` usando un bucle o un `map`? Para hacerlo debes saber que para pintar varios componentes en JSX basta con crear un array con cada JSX y devolverlo en una expresión entre {}.
+
+* * *
 
 ## Uso de `children` para acceder a los componentes hijo cuando no los conoces
 
@@ -172,9 +181,9 @@ Como se puede observar en el ejemplo, inyectaremos `props.children` en el JSX de
 
 * * *
 
-**EJERCICIO 1**:
+**EJERCICIO 2**:
 
-[STUB]
+Desarrolla un componente `HalfPage` que todo su contenido lo ponga en la mitad izquierda de la pantalla (mitad de ancho y todo el alto). Usa `children` para introducir todo el contenido entre la apertura y cierre de `HalfPage` en su interior. Crea 2 componente `HalfPage` con algo de contenido HTML (en JSX) para ver cómo se posiciona en una mitad y la otra.
 
 * * *
 
@@ -209,16 +218,16 @@ Button.defaultProps = {
 
 * * *
 
-**EJERCICIO 2**:
+**EJERCICIO 3**:
 
-[STUB]
+Partiendo del código del ejercicio 1, usa las `defaultProps` para que la descripción del item sea opcional y si no nos lo pasan por `props` aparezca 'No hay descripción'.
 
 * * *
 
 
 ## `props` tipadas con `propTypes`
 
-JavaScript no tiene un sistema de tipado fuerte, lo que significa que nuestras variables pueden almacenar cualquier tipo de valor. Podemos declarar una variable `const nameOfAPerson` que debería almacenar una `string` y, sin embargo, podemos asignarle un valor numérico como `4`, tanto en su inicialización como en un futuro, si fuera `let` o `var`. Cuando controlamos una pequeña base de código, esto no suppone ningún problema, pero existen dos casos en los que es más probable que empiecen a surgir incoherencias o errores:
+JavaScript no tiene un sistema de tipado fuerte, lo que significa que nuestras variables pueden almacenar cualquier tipo de valor. Podemos declarar una variable `const nameOfAPerson` que debería almacenar una `string` y, sin embargo, podemos asignarle un valor numérico como `4`, tanto en su inicialización como en un futuro, si fuera `let` o `var`. Cuando controlamos una pequeña base de código, esto no supone ningún problema, pero existen dos casos en los que es más probable que empiecen a surgir incoherencias o errores:
 
 - Cuando nuestra base de código es o va a ser muy grande (escalabilidad)
 - Cuando nuestro código será usado por otras personas (amabilidad, ;)
@@ -328,9 +337,9 @@ VerticalCenter.propTypes = {
 
 * * *
 
-**EJERCICIO 3**:
+**EJERCICIO 4**:
 
-[STUB]
+Dado el resultado del ejercicio 3, vamos a hacer que el nombre de los items sea obligatorio y que el precio sea también obligatorio y de tipo numérico. Crea después un nuevo item con valores erróneos para ver qué pinta tiene el error que nos envía React.
 
 * * *
 
