@@ -3,6 +3,7 @@
 [codepen-default-values]: https://codepen.io/adalab/pen/JMrJdK?editors=0010
 [codepen-component-children]: https://codepen.io/adalab/pen/WdZEQv?editors=0010
 [codepen-props-typechecking]: https://codepen.io/adalab/pen/ZvXqvm?editors=0010
+[codepen-props-example]: https://codepen.io/adalab/pen/XVoVOa?editors=0110
 
 ## Contenidos
 
@@ -56,7 +57,82 @@ Estas relaciones forman una jerarquía importante para entender React. Desde los
 
 ## Ejemplos de app con varios componentes y cómo se pasan datos con las `props`
 
-[STUB]
+Vamos a ver un ejemplo para entender mejor el paso de información de un componente a sus hijas. Partimos de un componente `Item` que es un artículo que tenemos en una lista de la compra:
+
+![Item example](./assets/images/4_4/item.png)
+
+Como vemos en la imagen, un item tiene estas propiedades:
+- nombre
+- descripción
+- cantidad
+- categoría
+- precio
+
+Vamos a crear un componente `Item` con estas características, pero que los valores de esas propiedades le lleguen por `props`:
+
+```js
+class Item extends React.Component {
+  render() {
+    return (
+      <div className="item">
+        <h5 className="quantity">{ this.props.quantity }</h5>
+        <div>
+          <h5>{ this.props.name }</h5>
+          <h6 className="text-muted">{ this.props.description }</h6>
+        </div>
+        <div className="badge badge-info">{ this.props.category }</div>
+        <h5 className="price">{ this.props.price }€</h5>
+      </div>
+    );
+  }
+}
+```
+
+Ahora, desde un componente padre para crear un item y pasarle la información por `props` lo hacemos así (recordad que esto es JSX pero es la sintaxis de HTML que ya conocemos):
+
+```js
+<Item
+  name="Cereales con chocolate"
+  description="Cereales rellenos de chocolate"
+  quantity="2"
+  category="Cereales"
+  price="5"
+/>
+```
+
+Para ver mejor cómo funciona, hemos creado otro componente `ItemList` que nos sirve para manejar listas de items. En este caso, va a crear varios items:
+
+```js
+class ItemList extends React.Component {
+  render() {
+    return (
+      <ul className="item-list">
+        <li>
+          <Item
+            name="Cereales con chocolate"
+            description="Cereales rellenos de chocolate"
+            quantity="2"
+            category="Cereales"
+            price="5"
+          />
+        </li>
+        <li>
+          <Item
+            name="Hamburguesa con queso"
+            description="Hamburguesa rica y saludable"
+            quantity="1"
+            category="Fast-food"
+            price="15"
+          />
+        </li>
+        //...
+      </ul>
+    );
+  }
+}
+```
+
+Echa un ojo al [ejemplo en codepen](codepen-props-example), e intenta añadir un nuevo `Item` a la lista.
 
 
 ## Uso de `children` para acceder a los componentes hijo cuando no los conoces
