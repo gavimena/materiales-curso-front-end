@@ -211,9 +211,15 @@ Espera, CSS ya tiene un sistema de ´@import´ que todas sabemos que se colocan 
 ```
 scss
   |- core
+  |  |- _variables.scss
   |  |- _functions.scss
-  |  |- _mixins.scss
-  |  `- _variables.scss
+  |  `- _mixins.scss
+	|
+	|- base
+  |  |- _general.scss
+  |  |- _grid.scss
+  |  |- _typography.scss
+  |  `- _helpers.scss
   |
   |- components
   |  |- _buttons.scss
@@ -224,15 +230,24 @@ scss
   |
   |- layout
   |  |- _header.scss
-  |  |- _footer.scss
-  |  |- _grid.scss
+  |  `- _footer.scss
   |
   `- pages
-     |- _about-us.scss
-     |- _contact.scss
-     `- _home.scss
+  |  |- _about-us.scss
+  |  |- _contact.scss
+  |  `- _home.scss
+  |
+  `- vendors
+     `- _bootstrap.scss
 ```
-Tendríamos cuatro bloques de archivos: los de **core** como son las variables, nuestros mixins y funciones; el bloque principal de **layout** con la estructura del site y los componentes principales como header y footer; los diferentes **componentes** como puede ser un boque de noticias, el formulario de contacto o los botones; y por último el bloque de **páginas** donde tendríamos los ajustes particulares de cada página.
+Tendríamos seis bloques de archivos:
+
+- **core**: contiene las variables, nuestros mixins y funciones
+- **base**: contiene los generales, los estilos de texto, la estructura que servirá para colocar el site o los helpers que serán estilos de ayuda para ocultar elementos, añadir un margen o cambios similares.
+- **componentes** que contendrá archivos para los estilos de los botones, de un bloque de noticias, de una lista...
+- **layout** con estilos relacionados con partes concretas de nuestra web como header y footer
+- **pages** donde tendríamos los ajustes particulares de cada página
+- **vendors** donde meteríamos estilos css de librerías CSS que han creado terceras personas y que usaremos en nuestra web como Bootstrap que veremos más adelante (de momento solo lo mencionamos).
 
 En nuesto `main.scss` llamaríamos a todos estos archivos en orden:
 ```scss
@@ -241,10 +256,13 @@ En nuesto `main.scss` llamaríamos a todos estos archivos en orden:
 @import 'core/mixins';
 @import 'core/variables';
 
-// Layout
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/grid';
+// Vendors
+@import 'vendors/boostrap';
+
+// Base
+@import 'base/general';
+@import 'base/typography';
+@import 'base/grid';
 
 // Components
 @import 'components/buttons';
@@ -253,10 +271,17 @@ En nuesto `main.scss` llamaríamos a todos estos archivos en orden:
 @import 'components/newsletter';
 @import 'components/typography';
 
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+
 // Pages
 @import 'pages/about-us';
 @import 'pages/contact';
 @import 'pages/home';
+
+// Helpers
+@import 'base/helpers'; // Van al final para predominar frente al resto
 ```
 
 > **NOTA 1:**  
