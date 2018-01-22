@@ -140,7 +140,7 @@ class ItemList extends React.Component {
 
 **EJERCICIO 1**:
 
-Echa un ojo al [ejemplo anterior en codepen](codepen-props-example), e intenta añadir un nuevo `Item` a la lista. Si tuviéramos los datos de cada item en un array de objetos (como variable global), ¿serías capaz de crear el JSX que devuelve el método `render` de `ItemList` usando un bucle o un `map`? Para hacerlo debes saber que para pintar varios componentes en JSX basta con crear un array con cada JSX y devolverlo en una expresión entre {}.
+Echa un ojo al [ejemplo anterior en codepen][codepen-props-example], e intenta añadir un nuevo `Item` a la lista. Si tuviéramos los datos de cada item en un array de objetos (como variable global), ¿serías capaz de crear el JSX que devuelve el método `render` de `ItemList` usando un bucle o un `map`? Para hacerlo debes saber que para pintar varios componentes en JSX basta con crear un array con cada JSX y devolverlo en una expresión entre {}.
 
 * * *
 
