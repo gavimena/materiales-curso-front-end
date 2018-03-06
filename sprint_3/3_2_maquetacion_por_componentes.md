@@ -350,46 +350,84 @@ Además, asignaremos a `body` los estilos que consideremos necesarios pero usand
 
 ### Componentes
 
-En este apartado veremos en clase como trabajar con componentes. Dejamos por aquí un código de ejemplo.
 
-```scss
-$color-dark: #161616;
-$color-ocean: #416dea;
-$color-grass: #3dd28d;
-$color-snow: #FFFFFF;
-$color-salmon: #F32C52;
-$color-sun: #feee7d;
-$color-alge: #7999a9;
-$color-flower: #353866;
-$color-smoke: #e4e4e4;
-$font-face: sans-serif;
+En este apartado veremos en clase como trabajar con componentes. Cuando hablamos de componentes en la web, hacemos referencia a la unidad mínima con la que se forman las distintas vistas de nuestra web. Por ejemplo, elementos como un botón o un campo d e texto (input) serán componentes de nuestra página.
 
-.button {
+Una de las claves en los sistemas de diseño es la reutilización, al igual que sucede con las tipografías y los colores, los componentes en un sistema deberían de estar diseñados para ser reutilizables y así poder sacar múltiples vistas para nuestra web reutilizando dichos componentes y que de esa forma tanto el diseño como el desarrollo lleven menos tiempo en realizarse.
+
+En los comienzos de la web los diseños de las páginas eran muy variopintos. Cada web tenía sus propios estilos y muchas veces varios elementos con la misma función - un enlace, por ejemplo - no tenían los mismos estilos. Esto hacía muy dificil sacar componentes que reutilizar y mantener una consistencia en los estilos.
+
+Con la llegada de los negocios y por consecuencia las aplicaciones web (Amazon, Dropbox, Facebook...) se vio la necesidad de crear interfaces que siguiesen una serie de patrones en sus estilos para facilitar la interacción a los usuarios. Gracias a este hecho, poco a poco se fue adaptando el diseño para hacerlo más sistemático y así mejorar la experiencia de usuario y la rapidez a la hora de crear nuevas páginas.
+
+Un ejemplo de la mejora en la experiencia de usuario es que si un botón rojo indica alerta, si utilizamos ese mismo estilo en todos los botones de alerta el usuario entenderá cada vez que vea ese botón que la acción que llevará a cabo requiere de mayor atención que otras acciones.
+
+Respecto a la reutilización, si tenemos un mismo estilo para las tarjetas con información que aparecen en nuestra página y creamos una clase CSS para una, podremos aplicar esa clase creada al resto, esto nos ahorrará el tiempo de crear el mismo estilo para varios elementos similares y además hará que cuando cambiemos la clase los cambios se apliquen en toda nuestra web.
+
+Hasta aquí la introducción a componentes y el por qué detrás de la proliferación de diseños que se enfocan en ellos. Lo que haremos ahora será explicar cómo crear un componente ayudándonos de Sass, más concretamente de los estilos anidados, de los `@import`s y de las variables.
+
+Para este ejemplo vamos a crear los estilos para un botón. Lo primero que vamos a hacer es crear un archivo parcial de Sass llamado `_button.scss`. De esta forma tendremos un archivo específico para los estilos de botón y si queremos añadir un nuevo estilo o modificar uno ya existente sabremos que lo podremos (¡y deberemos!) hacer en ese archivo.
+
+Recordando el ejemplo de la estructura que vimos para Sass, este componente deberíamos meterlo en la carpeta `components`:
+
+```
+scss
+	|
+	|- main.scss/index.scss (archivo principal)
+	|
+  |- core
+  |  |- _functions.scss
+  |  |- _mixins.scss
+  |  `- _variables.scss
+  |
+  |- components
+  |  |- _buttons.scss
+  |  |- _forms.scss
+  |  |- _hero.scss
+  |  |- _newsletter.scss
+  |  `- _typography.scss
+  ...
+
+```
+
+Bien, una vez creado el archivo vamos a crear un par de clases para nuestro botón. La idea es que tras crear todas las clases CSS tengamos las suficientes para poder obtener el resultado que aparece en la imagen siguiente sin tener que añadir ni una linea de CSS adicional.
+
+![]
+
+En primer lugar crearemos la clase `.btn` que será general y se aplicará a todos los botones y añade estilos como el color del texto, su alineación, el margen, etc... Además añadiremos otra clase `.btn-default` para aplicar los estilos del botón por defecto.
+
+```sass
+// Para el ejemplo ponemos el color aquí pero este deberíamos ponerlo en el archivo _variables.scss
+$color-primary: #416dea;
+
+// Como norma general, las variables específicas de un componente se suelen poner
+// al principio del archivo para que se puedan modificar facilmente más tarde
+$btn-font-color: #fff;
+$btn-line-height: 1.3;
+$btn-font-weight: 500;
+
+.btn {
   display: inline-block;
   margin: 10px;
-  padding: 12px 12px;
+  padding: 9px 16px 7px;
   cursor: pointer;
   text-align: center;
   text-transform: capitalize;
-  color: #fff;
+  color: $btn-font-color;
   border: none;
   border-radius: 4px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: $btn-font-weight;
   line-height: 1.3;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
+  text-decoration: none;
 
   &:hover {
-    -webkit-transition: all 150ms linear;
     transition: all 150ms linear;
-    opacity: .85;
+    opacity: 0.85;
   }
   &:active {
-    -webkit-transition: all 150ms linear;
     transition: all 150ms linear;
-    opacity: .75;
+    opacity: 0.75;
   }
   &:focus {
     outline: 1px dotted #959595;
@@ -398,36 +436,120 @@ $font-face: sans-serif;
 }
 
 .btn-default {
-  color: #202129;
-  background-color: #f2f2f2;
+  background-color: $color-primary;
 
   &:hover {
-    color: #202129;
-    background-color: #e1e2e2;
+    background-color: lighten($color-primary, 10%);
     opacity: 1;
   }
   &:active {
-    background-color: #d5d6d6;
+    background-color: darken($color-primary, 10%);
     opacity: 1;
   }
 }
 
+```
+
+Tras añadir estos estilos, sólo tendremos que hacer lo siguiente para que se apliquen sobre el elemento HTML que queramos:
+
+```html
+<a class="btn btn-default" href="#">Continuar</a>
+<button class="btn btn-default">Continuar</button>
+```
+
+Si te fijas, podemos aplicar el mismo estilo a un elemento `button` y a un elemento `a` y ambos conservan la misma apariencia. Debemos aplicar los estilos necesarios para que suceda esto y así no tengamos que preocuparnos por qué tipo de elemento es sino por cómo queremos que se vea.
+
+Es MUY IMPORTANTE colocar el estilo `btn-default` después de `.btn` ya que si en el futuro decidimos que `btn-default` tenga algún estilo diferente al resto de botones, si ponemos el mismo estilo en ambos y ponemos los estilos de `.btn` despues de los de `.btn-default` debido a como funciona CSS, los estilos de btn serán los que prevalezcan.
+
+TODO:
+
+- Ejemplo con estilos (alert, warning, success)
+
+```sass
 .btn-success {
-  color: $color-snow;
-  background: $color-grass;
+  background-color: $color-success;
+
+  &:hover {
+    background-color: lighten($color-success, 10%);
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: darken($color-success, 10%);
+    opacity: 1;
+  }
 }
 
-.btn-error {
-  color: $color-snow;
-  background: $color-salmon;
+.btn-alert {
+  background-color: $color-alert;
+
+  &:hover {
+    background-color: lighten($color-alert, 10%);
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: darken($color-alert, 10%);
+    opacity: 1;
+  }
 }
 
 .btn-warning {
-  color: black;
-  background: $color-sun;
+  background-color: $color-warning;
+
+  &:hover {
+    background-color: lighten($color-warning, 10%);
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: darken($color-warning, 10%);
+    opacity: 1;
+  }
+}
+```
+
+- Ejemplo con tamaños (btn-lg btn-sm y btn-full)
+
+```sass
+.btn-lg {
+  padding: 12px 20px 10px;
+  font-size: 16px;
 }
 
+.btn-sm {
+  padding: 6px 12px 4px;
+  font-size: 12px;
+}
 
+.btn-full {
+  display: block;
+  width: 100%;
+}
+```
+
+- Comentar que este principio es el que sigue Bootstrap
+
+
+- Explicar que para alert, warning, success y default se puede usar un mixin (como bonus) y también para btn-lg y btn-sm
+
+```sass
+@mixin button-style($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: lighten($color, 10%);
+    opacity: 1;
+  }
+  &:active {
+    background-color: darken($color, 10%);
+    opacity: 1;
+  }
+}
+
+.btn-default {
+  @include button-style($color-default);
+}
 ```
 
 * * *
