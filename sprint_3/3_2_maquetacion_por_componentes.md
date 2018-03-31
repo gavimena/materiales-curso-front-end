@@ -659,6 +659,16 @@ Si quieres experimentar más y ver cómo convierte el código Sass a CSS, puedes
 
 * * *
 
+EJERCICIO BONUS 1: Mixin para el tamaño de los botones
+
+Como hemos visto en el ejemplo, podemos crear un mixin para los distintos estilos de un botón. Como sugerencia de ejercicio y sólo si quieres, puedes probar a hacer un mixin para los tamaños de los botones. Puedes usar tanto CodePen como Sassmeister para realizarlo. El resultado debería ser idéntico y solo debería cambiar el código.
+
+Puedes partir de este [CodePen](https://codepen.io/anon/pen/vRjLbK) cómo base
+
+* * *
+
+* * *
+
 EJERCICIO 3: Nuestro componente input
 
 En este ejercicio vamos a crear los estilos para un componente input. Este componente, como se puede ver en la imagen tendrá distintos estados (activo, hover, etc.) y distintos formatos (con icono a la derecha y con icono a la izquierda)
