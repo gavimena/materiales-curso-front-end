@@ -353,11 +353,11 @@ Además, asignaremos a `body` los estilos que consideremos necesarios pero usand
 
 En este apartado veremos en clase como trabajar con componentes. Cuando hablamos de componentes en la web, hacemos referencia a la unidad mínima con la que se forman las distintas vistas de nuestra web. Por ejemplo, elementos como un botón o un campo d e texto (input) serán componentes de nuestra página.
 
-Una de las claves en los sistemas de diseño es la reutilización, al igual que sucede con las tipografías y los colores, los componentes en un sistema deberían de estar diseñados para ser reutilizables y así poder sacar múltiples vistas para nuestra web reutilizando dichos componentes y que de esa forma tanto el diseño como el desarrollo lleven menos tiempo en realizarse.
+Una de las claves en los sistemas de diseño es la reutilización, al igual que sucede con las tipografías y los colores, los componentes en un sistema deberían de estar diseñados para ser reutilizables y así poder sacar múltiples vistas para nuestra web reutilizando dichos componentes y que de esa forma tanto el diseño como el desarrollo lleven menos tiempo en realizarse. Hacer que desarrollar vistas de una web sea más rápido no solo hace que el producto se desarrolle más rápido, sino que también permite dedicar tiempo a crear páginas y diseños para probar hipótesis de forma rápida, por ejemplo, añadir
 
 En los comienzos de la web los diseños de las páginas eran muy variopintos. Cada web tenía sus propios estilos y muchas veces varios elementos con la misma función - un enlace, por ejemplo - no tenían los mismos estilos. Esto hacía muy dificil sacar componentes que reutilizar y mantener una consistencia en los estilos.
 
-Con la llegada de los negocios y por consecuencia las aplicaciones web (Amazon, Dropbox, Facebook...) se vio la necesidad de crear interfaces que siguiesen una serie de patrones en sus estilos para facilitar la interacción a los usuarios. Gracias a este hecho, poco a poco se fue adaptando el diseño para hacerlo más sistemático y así mejorar la experiencia de usuario y la rapidez a la hora de crear nuevas páginas.
+Con la llegada de los negocios y por consecuencia las aplicaciones web (Amazon, Dropbox, Facebook...) se vio la necesidad de crear interfaces que siguiesen una serie de patrones en sus estilos para facilitar la interacción a los usuarios y ganar velocidad en el desarrollo. Gracias a este hecho, poco a poco se fue adaptando el diseño para hacerlo más sistemático y así mejorar la experiencia de usuario y la rapidez a la hora de crear nuevas páginas.
 
 Un ejemplo de la mejora en la experiencia de usuario es que si un botón rojo indica alerta, si utilizamos ese mismo estilo en todos los botones de alerta el usuario entenderá cada vez que vea ese botón que la acción que llevará a cabo requiere de mayor atención que otras acciones.
 
@@ -389,9 +389,9 @@ scss
 
 ```
 
-Bien, una vez creado el archivo vamos a crear un par de clases para nuestro botón. La idea es que tras crear todas las clases CSS tengamos las suficientes para poder obtener el resultado que aparece en la imagen siguiente sin tener que añadir ni una linea de CSS adicional.
+Bien, una vez creado el archivo vamos a crear un par de clases para nuestro botón. La idea es que, tras crear todas las clases CSS, tengamos los estilos suficientes para poder obtener el resultado que aparece en la imagen siguiente sin tener que añadir ni una linea de CSS adicional.
 
-![]
+![Estilos de botones](assets/images/3-2/button-styles.png)
 
 En primer lugar crearemos la clase `.btn` que será general y se aplicará a todos los botones y añade estilos como el color del texto, su alineación, el margen, etc... Además añadiremos otra clase `.btn-default` para aplicar los estilos del botón por defecto.
 
@@ -415,11 +415,12 @@ $btn-font-weight: 500;
   color: $btn-font-color;
   border: none;
   border-radius: 4px;
+  font-family: inherit;
   font-size: 13px;
-  font-weight: $btn-font-weight;
   line-height: 1.3;
-  appearance: none;
+  font-weight: $btn-font-weight;
   text-decoration: none;
+  appearance: none;
 
   &:hover {
     transition: all 150ms linear;
@@ -457,15 +458,31 @@ Tras añadir estos estilos, sólo tendremos que hacer lo siguiente para que se a
 <button class="btn btn-default">Continuar</button>
 ```
 
-Si te fijas, podemos aplicar el mismo estilo a un elemento `button` y a un elemento `a` y ambos conservan la misma apariencia. Debemos aplicar los estilos necesarios para que suceda esto y así no tengamos que preocuparnos por qué tipo de elemento es sino por cómo queremos que se vea.
+[Ejemplo en CodePen](https://codepen.io/anon/pen/bvMEeg)
 
-Es MUY IMPORTANTE colocar el estilo `btn-default` después de `.btn` ya que si en el futuro decidimos que `btn-default` tenga algún estilo diferente al resto de botones, si ponemos el mismo estilo en ambos y ponemos los estilos de `.btn` despues de los de `.btn-default` debido a como funciona CSS, los estilos de btn serán los que prevalezcan.
+Si te fijas, podemos aplicar el mismo estilo a un elemento `button` y a un elemento `a` y ambos conservan la misma apariencia, esto no se debe a un tipo de magía negra, sino a que hemos aplicado estilos para que funcionen correctamente en ambos elementos de HTML. Debemos hacer esto para que no tengamos que preocuparnos por qué tipo de elemento es sino por cómo queremos que se vea y se comporte.
 
-TODO:
+Es MUY IMPORTANTE colocar el estilo `.btn-default` después de `.btn` para que sobreescriba los estilos que necesite. Si colocamos los estilos CSS de `.btn` despues de los de `.btn-default` debido a como funciona CSS, los estilos de `.btn` serán los que prevalezcan por estar colocados más abajo.
 
-- Ejemplo con estilos (alert, warning, success)
+Bien, hemos creado un estilo para los botones del tipo `default` pero queremos más estilos, ¿no?. Pues vamos a crearlos, es muy típico tener varios tipos de estilos para los botones según lo que queramos transmitir al usuario. En nuestro caso vamos a crear los siguientes:
+
+  - Botón por defecto. El que tenemos creado y como su nombre indica es el común. Cuando quieres poner un botón sin más, este es el que utilizas
+  - Botón de éxito. Se suele utilizar para botones de confirmación o de pago. Suele utilizar colores verdes porque el usuario lo ve como un color positivo y se identifica con algo bueno
+  - Botón de alerta. Sirve para utilizarlo en casos en los que necesitamos llamar la atención del usuario o reflejar que la acción que va a realizar al pulsar el botón puede ser peligrosa. Suele utilizarse un color rojo para representarlo.
+  - Botón alternativo. Muchas veces se crean este tipo de botones para utilizarlos en situaciones en las que el botón por defecto no podrá visualizarse bien (por su color, por ejemplo) y en otros casos se utiliza para añadir un botón menos llamativo que el botón por defecto.
+
+Bien vamos a crear los estilos para estos botones. Estos los añadiremos después de los estilos de `.btn-default` y lo haremos de la siguiente manera:
 
 ```sass
+// Aquí iría el código de btn y btn-default
+
+// Estas variables las definimos para los colores. Deberían ir en el archivo
+// _variables.scss. Pero las colocaremos aquí sólo para el ejemplo
+
+$color-success: #05c46b;
+$color-alert: #ff3f34;
+$color-alternate: #808e9b;
+
 .btn-success {
   background-color: $color-success;
 
@@ -494,22 +511,30 @@ TODO:
   }
 }
 
-.btn-warning {
-  background-color: $color-warning;
+.btn-alternate {
+  background-color: $color-alternate;
 
   &:hover {
-    background-color: lighten($color-warning, 10%);
+    background-color: lighten($color-alternate, 10%);
     opacity: 1;
   }
 
   &:active {
-    background-color: darken($color-warning, 10%);
+    background-color: darken($color-alternate, 10%);
     opacity: 1;
   }
 }
 ```
 
-- Ejemplo con tamaños (btn-lg btn-sm y btn-full)
+[Ejemplo en CodePen](https://codepen.io/anon/pen/qoYbVz)
+
+Si te fijas bien, verás que en todas las clases de los botones mantenemos la clase `btn` y utilizamos una distinta según el estilo que queremos que tenga cada botón. Lo hacemos así porque todos los botones tienen estilos comunes (tamaño de fuente, redondeado del borde, etc.) y en vez de añadir todas esas reglas a cada botón creamos esa clase común y la añadimos en todos los botones. Esta es una muy buena práctica porque si en el futuro queremos quitar, por ejemplo, los bordes redondeados, lo cambiaremos solo en la clase `btn` y se aplicará a todos los botones a la vez. Ganamos así en mantenimiento  porque no tenemos 30 líneas iguales y en adaptación al cambio porque con un ligero cambio modificamos los estilos de varios componentes, genial ¿no?.
+
+Otra de las ventajas de aplicar estilos usando varias clases distintas es que simplemente tocando HTML y cambiando una clase por otra podemos cambiar el estilo del botón. Imagina la rapidez a la hora de desarrollar que esto nos aporta si creamos clases de este estilo para inputs, imágenes, cabecera, etc...En muchos casos incluso si se crea un buen sistema de componentes alguien sin tocar el CSS puede crear nuevas secciones de una página y contribuir al desarrollo de una web.
+
+Este principio de componer clases para obtener un estilo u otro es el que utiliza el framework de [Bootstrap](https://v4-alpha.getbootstrap.com/). Este es un framework muy famoso porque permite a gente con pocas habilidades de diseño o maquetación (por ejemplo, un desarrollador backend o un product managers) crear una interfaz de manera rápida para un producto o un prototipo. De hecho los productos o primeros prototipos de muchas empresas empezaron con Bootstrap y gracias a la rapidéz que este ofrece pudieron sacar un prototipo rápido y validar su modelo de negocio o presentarlo a inversores. Dicho esto es importante saber que Boostrap es una solución pero no es la única y que al igual que ofrece rapídez a la hora de crear una web tiene una desventaja y es que es díficil de modificar para adaptarlo a unas necesidades muy concretas y que a menudo como suele ser la opción de gente que no sabe mucho de CSS se empiezan a hacer muchas ñapas con él y se crea un código muy díficil de mantener. Tendremos que saber cuando es mejor utilizar una opción u otra en función de la rapidez (Bootstrap) o versatilidad (no Bootstrap) que busquemos.
+
+Bien hemos visto cómo podríamos aplicar distintos estilos según el tipo de botón que queremos, pero esa es una de la muchas posibilidades que tenemos. Vamos a ver ahora posibilidades para modificar el tamaño del botón y poder hacerlo más grande, más pequeño o que ocupe el 100% del ancho del elemento que lo contiene con los siguientes estilos:
 
 ```sass
 .btn-lg {
@@ -522,18 +547,84 @@ TODO:
   font-size: 12px;
 }
 
-.btn-full {
+.btn-full-width {
   display: block;
   width: 100%;
 }
 ```
 
-- Comentar que este principio es el que sigue Bootstrap
+[Ejemplo en CodePen](https://codepen.io/anon/pen/vRjLbK)
 
+Como se muestra en el ejemplo, en este caso ya estamos modificando algo más que simplemente los colores, esto nos permite ver que creando unas pocas clases podemos aplicar estilos de forma muy versátil sin mucha complicación.
 
-- Explicar que para alert, warning, success y default se puede usar un mixin (como bonus) y también para btn-lg y btn-sm
+Y con estos estilos para cambiar el tamaño de los botones terminamos esta sección de cómo crear componentes. Si que es importante tener en cuenta dos cosas:
+
+- No nos debemos volver locos creando estilos sino crear solo los justos y necesarios en función del diseño. Un ejemplo, si tenemos los titulares (h1) con una Times New Roman y 42px de tamaño y siempre van así y tenemos por otro lado los títulos de sección (h3) con una Arial de 18px de tamaño no tiene sentido que creemos cuatro estilos (font-arial, font-times, txt-xxl, txt-l) sino que sería más recomendable tener dos estilos porque un título siempre va a ir con Times New Roman y un h3 siempre con Arial.
+
+- No hay una única solución para nombrar y organizar los estilos. Nosotros os planteamos más abajo algunas soluciones de algunos sistemas pero en muchas ocasiones, como sucede muchas veces en programación, no existe la forma única sino que dependerá de cada caso. Por tanto, no te preocupes si no estás segura de cómo nombrar o que clases utilizar para tus componentes, puedes preguntarnos en clase o hacerlo como mejor consideres y nosotros siempre te daremos consejo en los ejercicios y el feedback.
+
+#### BONUS: Mixins para nuestros estilos
+
+Bien hasta ahora mencionabamos los mixins en la sección de bonus de Sass pero muchas veces sucede que no tenemos ejemplos claros donde veamos para qué sirven estos exactamente. Pues para el caso que hemos visto de aplicar distintos estilos a los botones pueden ser de gran ayuda y nos permitirán crear un código más sencillo y fácil de mantener.
+
+Recuperando el código de Sass de nuestros botones esto era lo que teníamos:
 
 ```sass
+$color-success: #05c46b;
+$color-alert: #ff3f34;
+$color-alternate: #808e9b;
+
+.btn-success {
+  background-color: $color-success;
+
+  &:hover {
+    background-color: lighten($color-success, 10%);
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: darken($color-success, 10%);
+    opacity: 1;
+  }
+}
+
+.btn-alert {
+  background-color: $color-alert;
+
+  &:hover {
+    background-color: lighten($color-alert, 10%);
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: darken($color-alert, 10%);
+    opacity: 1;
+  }
+}
+
+.btn-alternate {
+  background-color: $color-alternate;
+
+  &:hover {
+    background-color: lighten($color-alternate, 10%);
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: darken($color-alternate, 10%);
+    opacity: 1;
+  }
+}
+```
+
+Bien, si nos fijamos, se puede ver claramente que el código de los tres estilos (`.btn-alternate`, `.btn-alert` y `.btn-success`) es prácticamente igual pero solo cambia la variable de color que se utiliza en cada uno. Esto hace que no podamos usar una misma clase para todos y a la vez no podamos eliminar esa repetición de código. Es en estos casos dónde los mixins cobran sentido. Si recordamos, en JavaScript cuando queríamos ejecutar un mismo código pero pasandole distintos valores utilizabamos una función ¿verdad?. Pues en este caso queremos hacer lo mismo, con distintos colores, aplicar una serie de estilos y lo haremos con mixins.
+
+Sass tambien tiene funciones pero la diferencia entre las funciones y los mixins en Sass es que una función debe devolver un valor (1px, 100%, 1em, left, etc.) mientras que un mixin se suele utilizar para devolver estilos enteros (`a {color: red;}`, `width: 240px;`, etc.). Como en este caso queremos devolver una clase entera con sus correspondientes estilos utilizaremos mixins y lo haremos de la siguiente forma:
+
+```sass
+// Creamos el mixin, la "funcion" que genera un código CSS
+// $color es el nombre que le damos al color que se le pasará al mixin a la hora
+// de utilizarlo para poder definir cómo se va a utilizar
 @mixin button-style($color) {
   background-color: $color;
 
@@ -547,10 +638,24 @@ TODO:
   }
 }
 
-.btn-default {
-  @include button-style($color-default);
+// Para utilizar el mixin, utilizamos el `@include` seguido del nombre del mixin
+// y entre paréntesis el color que queremos utilizar en cada caso
+.btn-success {
+  @include button-style($color-success);
+}
+
+.btn-alert {
+  @include button-style($color-alert);
+}
+
+.btn-alternate {
+  @include button-style($color-alternate);
 }
 ```
+
+Si copiamos ese código y lo utilizamos en vez del anterior veremos que el resultado es idéntico pero además el código que se genera es también el mismo. La única diferencia es que de esta forma hacemos más sencillo y fácil de entender nuestro código y permitimos que sea más fácil de mantener.
+
+Si quieres experimentar más y ver cómo convierte el código Sass a CSS, puedes usar [Sassmeister](http://sassmeister.com/). Prueba a escribir Sass en el panel izquierdo y verás el resultado CSS en el derecho.
 
 * * *
 
@@ -588,11 +693,15 @@ Un ejemplo del código que podríamos encontrar en este archivo sería el siguie
 .inline { display: inline; }
 .inline-block { display: inline-block; }
 
-// Esta clase es muy útil cuando queremos colocar un elemento en posición absoluta
+// Esta clase se suele aplicar mucho a un elemento padre que contiene otro en
+// posición absoluta y se utiliza para que el elemento en posición absoluta se
+// coloque en función de la posición del padre con posición relativa.
 
 .relative { position: relative; }
 
 // Esta clase es la solemos usar con JavaScript para ocultar o mostrar un elemento
+// Algunas personas suelen poner el prefijo js- delante de las clases relacionadas
+// con JavaScript para identificarlas mejor (e.g. .js-hidden)
 .hidden { display: none; }
 .hide-sm { @media (max-width: 1023px) { display: none; } }
 .hide-lg { @media (min-width: 1024px) { display: none; } }
@@ -638,12 +747,10 @@ Luego a la hora de usarlo será algo tan simple como esto:
 
 ```html
 <div class="hide-lg">
-  <p>Solo aparezcon en pantallas pequeñas</p>
+  <p>Solo aparezco en pantallas pequeñas</p>
 </div>
 
-<div class="p-lg m-top-lg">
-  <p class="">Tengo un margen superior grande</p>
-</div>
+<p class="p-lg m-top-lg">Tengo mucho padding y un margen superior grande</p>
 ```
 
 
