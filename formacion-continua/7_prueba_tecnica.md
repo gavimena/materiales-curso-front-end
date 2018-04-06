@@ -3,7 +3,7 @@
 
 ## Resumen
 
-Ya somos unas cuantas en Adalab, no sería genial tener un pequeño directorio donde buscarnos? Pues nos lo vamos a hacer, claro que sí!
+Ya somos unas cuantas en Adalab, ¿no sería genial tener un pequeño directorio donde buscarnos? Pues nos lo vamos a hacer, claro que sí!
 
 ## Guía funcional
 Tiraremos de la [API de GitHub](https://developer.github.com/v3/) para conseguir la url a la que debemos pedir la lista de miembros de la organización Adalab, con esos datos crearemos un `<select>` con los nombres de usuario. Al seleccionar uno de ellos, pediremos sus datos y los mostraremos en una pequeña card. Se puede probar el funcionamiento en este prototipo: [https://sketch.cloud/s/drlRZ/all/github-card/00-principal/play](https://sketch.cloud/s/drlRZ/all/github-card/00-principal/play)
@@ -22,7 +22,7 @@ Tiraremos de la [API de GitHub](https://developer.github.com/v3/) para conseguir
 * **La prioridad 1 es que funcione**
 * La prioridad 2 es acercarse lo más posible al aspecto propuesto en el prototipo
 * El dato de "Miembro desde hace X años/meses" **ES OPCIONAL**. Si ya has terminado todo se trata de indicar cuánto tiempo lleva dicho usuario siendo miembro de Github
-* * Por defecto, la API nos devolverá 20 resultados, más que suficiente para el ejercicio. Si nos venimos arriba y queremos sacar a todo el mundo, en Adalab somos 68 criaturas, añadiendo `?per_page=68` a la url de la petición y estaremos todas
+* Por defecto, la API nos devolverá 20 resultados, más que suficiente para el ejercicio. Si nos venimos arriba y queremos sacar a todo el mundo, en Adalab somos 68 criaturas, añadiendo `?per_page=68` a la url de la petición y estaremos todas
 
 
 ## Entrega
