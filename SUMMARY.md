@@ -83,6 +83,7 @@
 * [Prueba técnica #4](formacion-continua/4_prueba_tecnica.md)
 * [Prueba técnica #5](formacion-continua/5_prueba_tecnica.md)
 * [Prueba técnica #6](formacion-continua/6_prueba_tecnica.md)
+* [Prueba técnica #7](formacion-continua/7_prueba_tecnica.md)
 
 ## Guías
 
