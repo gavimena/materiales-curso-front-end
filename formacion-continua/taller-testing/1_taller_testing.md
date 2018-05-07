@@ -137,7 +137,7 @@ module.exports = sum;
 - `index.test.js`: donde estará el código de los tests. Al comienzo importamos la función del fichero anterior, y luego hacemos un test que prueba la función de suma.
 
 ```js
-const sum = require('./sum');
+const sum = require('./index');
 
 test('adds 1 + 2 to equal 3', () => {
   expect(sum(1, 2)).toBe(3);
