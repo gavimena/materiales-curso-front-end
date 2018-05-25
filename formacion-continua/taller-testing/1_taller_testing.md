@@ -318,7 +318,7 @@ Realizaremos algunas katas de ES6 en http://es6katas.org/
 - class (6, excepto static)
 
 ### Sesión 5
-Realizaremos la [kata *Gilded Rose* con JavaScript](https://github.com/istepaniuk/gilded-rose-js-with-tests)
+Realizaremos la [kata *Gilded Rose* con JavaScript](https://github.com/gootyfer/gilded-rose-js-with-tests)
 
 ## Recursos externos
 
