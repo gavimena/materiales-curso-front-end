@@ -53,7 +53,7 @@ Existen muchas clasificaciones de testing, pero aquí hemos elegido una de las m
 - **tests de integración**: prueban que varias piezas de código funcionan bien juntas, por ejemplo, una función que llama a otras funciones; podemos juntar tantas piezas como queramos, hasta llegar a la aplicación completa
 - **tests de aceptación o *end-to-end***: son un tipo especial de tests de integración que están relacionados con los criterios de aceptación definidos por el cliente, es decir, que prueban algo que tiene valor a nivel de negocio; por ejemplo, que un usuario puede crear una tarea nueva en nuestra aplicación de gestión de tareas
 
-En el front-end normalmente vamos a tener muchos tests de integración puesto que estamos continuamente interactuando con componentes externos a nuestro código. Por ejemplos, serán tests de integración los que comprueban que algo se pinta bien en el DOM, guardan algo en LocalStorage o hacen una petición a un API.
+En el front-end normalmente vamos a tener muchos tests de integración puesto que estamos continuamente interactuando con componentes externos a nuestro código. Por ejemplo, serán tests de integración los que comprueban que algo se pinta bien en el DOM, guardan algo en LocalStorage o hacen una petición a un API.
 
 Aún así, en este taller nos centramos en aprender a los tests más básicos, los unitarios, que son la base sobre la que se cimenta el testing automático.
 
